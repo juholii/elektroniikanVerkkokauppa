@@ -1,0 +1,110 @@
+﻿.blazor-modal {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.blazor-modal-content {
+    width: auto;
+    margin: auto;
+    margin-top: 150px;
+    background-color: white;
+    border-radius: 0px;
+    -webkit-box-shadow: 6px 4px 38px -21px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 4px 38px -21px rgba(0,0,0,0.75);
+    box-shadow: 6px 4px 38px -21px rgba(0,0,0,0.75);
+    overflow: hidden;
+    left: 0;
+    right: 0;
+}
+
+.show {
+    display: block;
+    animation-name: show-animation;
+    animation-duration: 1s;
+}
+
+@keyframes show-animation {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.blazor-modal-header {
+    background-color: #30353e;
+    padding: 15px;
+    color: white;
+    width: fit-content;
+}
+
+.blazor-modal-title {
+    margin: 5px;
+    display: inline-block;
+}
+
+.blazor-modal-close-button {
+    float: right;
+    margin: 5px;
+    cursor: pointer;
+}
+
+    .blazor-modal-close-button:hover {
+        color: red;
+    }
+
+.blazor-modal-body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    position: static;
+    font-variant-numeric: oldstyle-nums;
+    overflow: auto;
+
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5c000047;
+}
+
+.blazor-modal-footer {
+    background-color: #000000;
+    padding-top: 2px;
+    height: auto;
+    overflow: auto;
+}
+
+@media (max-width:420px) {
+
+    .blazor-modal {
+        padding: 0% 9% 0% 0%;
+    }
+}
+
+@media (max-width:920px) {
+
+    /* Hide scrollbar, Chrome, Safari,  Opera */
+    .blazor-modal-body::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar, IE, Edge, Firefox */
+    .blazor-modal-body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
