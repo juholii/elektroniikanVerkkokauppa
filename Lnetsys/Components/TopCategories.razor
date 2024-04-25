@@ -1,0 +1,147 @@
+﻿@using System.Timers
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<div class="category-menu" style="display:none;">
+    <a class="tab-btn" @onclick="@(e => Categ1())"><div class="category-text">Elektroniikkaa</div></a>
+</div>
+
+@code {
+    private async Task Visib()
+    {
+        var element = await Js.InvokeAsync<IJSObjectReference>("eval", "document.querySelector('#accordi1')");
+        await element.InvokeVoidAsync("classList.remove", "visib_H");
+        await element.InvokeVoidAsync("classList.add", "visib_S");
+        /*
+        await Js.InvokeVoidAsync("eval", "document.querySelector('.rotatepaneltext').style.display = 'none';");
+        */
+    }
+
+    private async Task Categ0()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1432918464", true);
+    }
+
+    private async Task Categ1()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1652724145", true);
+    }
+    private async Task Categ2()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1742567174", true);
+
+    }
+    private async Task Categ3()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#2016796011", true);
+    }
+    private async Task Categ4()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1131447753", true);
+    }
+    private async Task Categ5()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#888275334", true);
+    }
+    private async Task Categ6()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1238034411", true);
+    }
+    private async Task Categ7()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1409591167", true);
+    }
+
+    private async Task Categ9()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#300313113", true);
+    }
+    private async Task Categ10()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1046274651", true);
+    }
+    private async Task Categ11()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#759742677", true);
+    }
+    private async Task Categ12()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1591049093", true);
+    }
+    private async Task Categ13()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#564373050", true);
+    }
+    private async Task Categ14()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#479167668", true);
+    }
+    private async Task Categ15()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1145793374", true);
+    }
+    private async Task Categ16()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#850872744", true);
+    }
+    private async Task Categ17()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1487130275", true);
+    }
+    private async Task Categ18()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1223094914", true);
+    }
+    private async Task Categ19()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#942520673", true);
+    }
+    private async Task Categ20()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1395507690", true);
+    }
+
+    private async Task Categ21()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1236536885", true);
+    }
+
+    private async Task Categ22()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1310211684", true);
+    }
+
+    private async Task Categ23()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1023679734", true);
+    }
+
+    private async Task Categ24()
+    {
+        await Visib();
+        NavigationManager.NavigateTo("#1409591167", true);
+    }
+}

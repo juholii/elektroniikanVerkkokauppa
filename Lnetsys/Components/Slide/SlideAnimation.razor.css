@@ -1,0 +1,14 @@
+﻿.my-div {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+.wrapper {
+    grid-row: 1;
+    grid-column: 1;
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#30353e" />
+    <title>Lnetsys</title>
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html {
+            background-color: #30353e;
+            border-top-style: outset;
+            color: white;
+            text-align: center;
+            padding-left: 7px;
+            padding-right: 7px;
+        }
+
+        div {
+            background-color: #30353e;
+            margin: 2px;
+        }
+
+        label {
+            color: #626262;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .cart-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 45px;
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            margin-top: 5px;
+            z-index: 0;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f00;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .cart-icon-home {
+            font-size: 24px;
+        }
+
+        app {
+            display: none;
+        }
+
+        .accordion-item {
+            display: none;
+        }
+
+        #glightbox-body {
+            height: auto;
+        }
+
+        @media screen and (max-width: 798px) {
+
+            .gslide-image {
+                top: 0;
+                position: absolute;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-link" style="position: absolute; top: 12px; left: 12px; color: white; font-size: 24px; padding: 3px; border: 3px solid #ffffff; border-radius: 10%; "><a style="display: table-header-group;" href="./tuote.html">☰ Tuotteet</a></div>
+
+    <hr style="visibility:hidden">
+
+    <div class="cart-container-home">
+        <div style="visibility:visible" class="cart-icon"><a href="kassa.html"><i class="fa fa-shopping-cart"></i></a></div>
+        <br />
+        <div style="visibility:visible" class="cart-icon-home"><a href="/"><i class="fa fa-home"></i></a></div>
+    </div>
+
+    <hr style="visibility:hidden">
+
+    <div data--type="view-cart" data--summary-type="dropdown" style="width:99%">Katso ostoskorisi sisältö</div>
+
+    <hr style="visibility:hidden">
+
+    <div id="similar-products" data--type="product">
+    </div>
+
+    <script>
+        let prodID = new URL(location.href).searchParams.get('product');
+        document.querySelector('#similar-products').dataset.SimilarTo = prodID;
+    </script>
+
+</body>
+
+</html>

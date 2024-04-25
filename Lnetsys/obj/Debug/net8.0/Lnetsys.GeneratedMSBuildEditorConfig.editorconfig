@@ -1,0 +1,183 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Lnetsys
+build_property.RootNamespace = Lnetsys
+build_property.ProjectDir = C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/BlazorModal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xCbGF6b3JNb2RhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/BlazorModalAll.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xCbGF6b3JNb2RhbEFsbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/LogReg.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2dSZWcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Anturit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQW50dXJpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Audio.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXVkaW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Avainsarjat.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhaW5zYXJqYXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Eta.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Hiirinappaimistot.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGlpcmluYXBwYWltaXN0b3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Jaahdytys.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSmFhaGR5dHlzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Kaapelit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS2FhcGVsaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Kamerakaapelit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS2FtZXJha2FhcGVsaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Kamerat.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS2FtZXJhdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Korttitietokoneet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS29ydHRpdGlldG9rb25lZXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Kotelot.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcS290ZWxvdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Laturit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGF0dXJpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Ledjavalotuote.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVkamF2YWxvdHVvdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Muistikortit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXVpc3Rpa29ydGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Muutuote.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXV1dHVvdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Naytot.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmF5dG90LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Ohjelmointi.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2hqZWxtb2ludGkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Pidikejateline.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlkaWtlamF0ZWxpbmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Ruuvisarjat.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUnV1dmlzYXJqYXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Sovitin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU292aXRpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Suojausjapuhdistus.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VvamF1c2phcHVoZGlzdHVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Tyoskentelyalustat.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHlvc2tlbnRlbHlhbHVzdGF0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Verkkolaitteet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVya2tvbGFpdHRlZXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/MobileTabs.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNb2JpbGVUYWJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-vvpeklyojz
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/ProjSample/Projektit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQcm9qU2FtcGxlXFByb2pla3RpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-krz892tpyn
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/Slide/SlideAnimation.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTbGlkZVxTbGlkZUFuaW1hdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-mibky3g0sd
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/TextAnim.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUZXh0QW5pbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-9koa22uhxr
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/TopAllPages.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb3BBbGxQYWdlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-v09e0j0knq
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Components/TopCategories.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb3BDYXRlZ29yaWVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-1nf10s1fka
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qs32mw80lh
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Pages/Information.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5mb3JtYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-l2p9dolvb5
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8wquswm4na
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-yozy7zd8m3
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Shared/OpenClose.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE9wZW5DbG9zZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0h62o3a2sw
+
+[C:/Users/--developer--/Desktop/25.4.2024/elektroniikanVerkkokauppa-main/Lnetsys/Shared/VerticalNav.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFZlcnRpY2FsTmF2LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-9aagsm116m

@@ -1,0 +1,64 @@
+﻿@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<div class="tabs">
+  <div class="wrapper">
+    <div class="tab-header">
+      <div class="tab-btn active">
+        <a @onclick="@(e => But30())">
+            <i class="fa fa-link"></i>
+            <p style="margin-left:25px;font-family:fantasy;font-size:small; color:black;">Tietoa</p>
+        </a>
+      </div>
+      <div class="tab-btn">
+        <a @onclick="@(e => But31())">
+            <i class="fas fa-sync"></i>
+        </a>      
+      </div>
+      <div class="extra-toggle-btn" style="background:#a5a5a5;">
+        <a class="nav-link" href="https://www.lnetsys.fi/tuote.html" target="_blank">
+            <i class="fas fa-shopping-basket" style="color: black;"></i>
+        </a>
+      </div>
+      <div hidden class="tab-btn">
+        <a @onclick="@(e => But32())">
+            <i class="fa fa-home"></i>
+        </a>    
+      </div>
+      <div class="tab-btn">
+        <a class="nav-link" href="https://www.lnetsys.fi/kassa.html" target="_blank">
+            <i class="fa fa-shopping-cart"></i>
+        </a>
+      </div>
+      <div><span class="rotatepaneltext_bottom">Lnetsys</span></div>
+    </div>
+  </div>
+</div>
+
+@code {
+    private string currentPath = string.Empty;
+
+    private async Task But30()
+    {       
+        NavigationManager.NavigateTo("#over_In", true);
+    }
+
+    private async Task But31()
+    {       
+        string path = currentPath;
+        if (!string.IsNullOrEmpty(path) && path.StartsWith("/"))
+        {
+            int index = path.IndexOf("/", 1);
+            if (index > -1)
+            {
+                path = path.Substring(0, index);
+            }
+        }
+        NavigationManager.NavigateTo(path, forceLoad: true);
+    }
+
+    private async Task But32()
+    {       
+        NavigationManager.NavigateTo("#Lnetsys", true);
+    }
+}

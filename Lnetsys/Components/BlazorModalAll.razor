@@ -1,0 +1,52 @@
+﻿@typeparam TItemAll
+@using System.Diagnostics.CodeAnalysis
+
+<div class="blazor-modal-all @cssClass">
+    <div class="blazor-modal-all-content">
+        <div class="blazor-modal-all-header">
+            
+            <h5 class="blazor-modal-all-title"></h5> 
+            <span class="blazor-modal-all-close-button" @onclick="() => IsOpened = false"> <!-- <ScrollUp /> --> </span>
+        </div>
+        <div class="blazor-modal-all-body">
+            @foreach (var item in Items)
+            {
+                if (ModalBodyAll is not null)
+                {
+                    @ModalBodyAll(item)
+                               
+                }
+            }
+        </div>
+        <div class="blazor-modal-all-footer">
+
+            @foreach (var item in Items)
+            {
+                if (ModalFooterAll is not null)
+                {
+                    @ModalFooterAll(item)
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string TitleAll { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItemAll>? ModalBodyAll { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItemAll>? ModalFooterAll { get; set; }
+
+    [Parameter]
+    public bool IsOpened { get; set; }
+
+    string cssClass => IsOpened ? "show" : "hide";
+
+    [Parameter, AllowNull]
+    public IReadOnlyList<TItemAll> Items { get; set; }
+}

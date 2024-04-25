@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+
+<aside id="sidebar" class="css-sidebar js-sidebar" style="display: @(showArrow ? "none" : "block")">
+    <div class="arrowProje" @onclick="ToggleArrowA"></div>
+    <div class="sticky-left-container">
+        <ul class="sticky-left">
+            <li>
+                <a href="mailto:">
+                    <svg viewBox="0 0 8 6" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z" />
+                    </svg>
+                </a>
+                <!--
+                <p>Email</p>
+                -->
+            </li>
+        </ul>
+    </div>
+
+</aside>
+
+
+
+@code { 
+    private void NavigateToSearch()
+	{
+        NavigationManager.NavigateTo("#hakuikkuna", true);
+	}
+
+    private bool showArrow = false;
+
+    private void ToggleArrowA()
+    {
+        showArrow = !showArrow;
+    }
+}

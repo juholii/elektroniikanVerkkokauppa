@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div style="display:block;" class="arrowProje" @onclick="ToggleArrowA"></div>
+    <div style="display: @(showArrow ? "" : "none")">
+    
+        <div  class="sidebar">
+            <section id="ikkuPro"></section>
+            <div>
+                <NavMenu />
+            </div>       
+        </div>
+        <div>
+            <VerticalNav />
+        </div>
+
+    </div>
+    <main>
+        <article class="content"> 
+            @Body
+        </article>     
+    </main>
+</div>
+
+@code{
+    private bool showArrow = true;
+
+    private void ToggleArrowA()
+    {
+        showArrow = !showArrow;
+    }
+}
+

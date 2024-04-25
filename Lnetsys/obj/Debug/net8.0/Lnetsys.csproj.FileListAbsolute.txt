@@ -1,0 +1,6 @@
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.csproj.AssemblyReference.cache
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.AssemblyInfoInputs.cache
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.AssemblyInfo.cs
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.csproj.CoreCompileInputs.cache
+C:\Users\--developer--\Desktop\25.4.2024\elektroniikanVerkkokauppa-main\Lnetsys\obj\Debug\net8.0\Lnetsys.MvcApplicationPartsAssemblyInfo.cache

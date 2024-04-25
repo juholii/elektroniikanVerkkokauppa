@@ -1,0 +1,148 @@
+﻿.sitemap {
+    grid-template-columns: 0.2fr 0.2fr 0.2fr;
+}
+
+.sitemap-item {
+    background-color: #ffffff;
+    margin-top: 30px;
+    transition: 0.3s all;
+    margin-right: 8px;
+    border: solid;
+    border-color: #343333;
+    border-width: 10px;
+    min-width: 170px;
+}
+
+.sitemap-item-feature {
+    grid-column: 1 / span 6;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+img {
+    display: block;
+    max-width: 110px;
+    max-height: 70px;
+    border-radius: 0px;
+    cursor: pointer;
+    filter: drop-shadow(0px 3px 2px black);
+    transition: 0.3s all;
+    transform: translateY(-20px);
+}
+
+body {
+    line-height: 1.8;
+    word-break: break-word;
+    width: 75%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 28px;
+    display: ruby-text;
+}
+
+div.wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: calc(var(--nav-width) + var(--gap) * 2);
+    margin: 0 auto;
+}
+
+.info-box .info {
+    box-sizing: border-box;
+    float: left;
+    width: 33.3333333333%;
+    padding: 0;
+    min-height: 50px;
+}
+
+.sitemap {
+    margin: 0 auto;
+    display: inline-block;
+    overflow-x: auto;
+    padding: 8px;
+}
+
+.sitemap .card {
+    min-height: 100%;
+    box-shadow: 10px 20px 20px -6px hsla(0, 0%, 70%, 0.3); 
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #555;
+    position: relative;
+    top: 0;
+    transition: all 0.1s ease-in;
+    background-image: url(assets/img/building.jpg);
+    background-size: 100% 150%;
+    background-blend-mode: hard-light;
+    background-color: burlywood;
+    
+}
+
+.sitemap .card:hover {
+    top: -2px;
+    box-shadow: 10px 20px 20px -6px hsla(0, 0%, 70%, 0.3);
+}
+
+.sitemap .card article {
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.sitemap h3 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0;
+    color: #ffffff;
+    background-color: #181a1fb3;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.sitemap .card span {
+    font-size: 12px;
+    color: black;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    margin: 3em 0 0 0;
+}
+
+.video-container {
+    margin: 50px 0 250px;
+    background-color: #1f2029;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1f2029;
+}
+
+div.link {
+    margin-bottom: 50px;
+}
+

@@ -1,0 +1,32 @@
+﻿@if (isLoaded)
+{
+    @ChildContent
+}
+else
+{
+    <NavLink href="musicplayer">
+        <div class="parent">
+            <div class="child">
+                <p style="color:red;">Uutta nyt</p>
+            </div>
+        </div>
+    </NavLink>
+}
+
+@code {
+    bool isLoaded;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public OpenClose(RenderFragment childContent)
+    {
+        ChildContent = childContent;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(16000);
+        isLoaded = true;
+    }
+}

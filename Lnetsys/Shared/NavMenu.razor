@@ -1,0 +1,173 @@
+﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+@inherits LayoutComponentBase
+
+<section style="@sidebarWidth">
+    @if (width == 30)
+    {
+        <section @onclick="OpenNav">
+
+            <span class="rotatepaneltext">Palvelut
+                <div class="arrow"></div>
+            </span>
+
+            <span class="rotatepaneltextMail">
+                @
+            </span>           
+        </section>
+    }
+
+    @if (width > 30)
+    {
+
+        <section style="@borderT;position: inherit;z-index: 9999;border-radius:unset;top:0px;margin-top: auto;">
+
+            <div class="animText">
+                <div class="btnList" style="visibility:hidden;position: fixed;top: 40px;right: 2px;z-index: 101;width: 30px;height:3px; "><!--!--><i></i><!--!--><span></span></div>
+
+                @for (int i = 0; i < buttonCount; i++)
+                {
+                    <button @onclick="CloseNav" style="position: fixed;z-index: 999;top:0 ;width: 18px;height:23px;color: black;right: 0;"><i class="fa fa-window-close"></i></button>
+
+                    <div class="projektit" style="margin-left:0px">
+
+                        <div id="nakyma0">
+                            <ul>
+                                <div class="container text-bg-dark py-4 py-xl-5">
+                                    <div class="row text-bg-dark mb-5">
+                                        <div class="col-md-8 col-xl-6 text-center mx-auto">
+                                            <article style="position:relative;text-align:center;">
+                                                <img style="min-height: 485px;width: 100%;" src="assets/img/building.jpg">
+                                                <strong class="centered" style="padding:2px;">Autamme visiosi toteutuksessa: Luomme komponentit ja lähdekoodit projektiisi. Tarjoamme räätälöityä sovelluskehityspalvelua juuri teidän tarpeitanne varten. Laajenna projektiasi haluamallasi tavalla ja omien aikataulujesi mukaan.</strong>
+                                            </article>                                           
+                                        </div>
+                                    </div>
+                                    <div class="row gy-4 row-cols-1 row-cols-md-2 text-bg-dark" style="justify-content: center;text-align: center;">
+                                        <div class="col">
+                                            <div class="d-flex flex-column flex-lg-row">
+                                                <div class="w-100"><img class="rounded img-fluid d-block w-100 fit-cover" style="height: 200px;" src="icon.png"></div>
+                                                <div class="py-4 py-lg-0 px-lg-4">
+                                                    <h4>Verkkosovelluskehitys</h4>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 50px;height: 40px;border: solid;">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                            </ul>
+                        </div>
+                        <Lnetsys.Components.ProjSample.Projektit />
+                    </div>
+                }
+            </div>
+        </section>
+    }
+</section>
+
+@code {
+    [Parameter]
+    public string PaikkaLink1 { get; set; } = "Button";
+
+    private bool nakyma2 = true;
+
+    private void NaytaLisatiedot()
+    {
+        nakyma2 = true;
+    }
+
+    private void PiilotaLisatiedot()
+    {
+        nakyma2 = false;
+    }
+
+    public class Product
+    {
+        public int? Id { get; set; }
+        public string? Name { get; set; }
+        public string? Sijainti { get; set; }
+        public string? Ala { get; set; }
+        public string? Kuvaus { get; set; }
+        public string? Julkaistu { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? KayttajanUrl { get; set; }
+        public string? Teknologia1 { get; set; }
+        public string? Teknologia2 { get; set; }
+        public string? Teknologia3 { get; set; }
+        public string? Teknologia4 { get; set; }
+        public string? Teknologia5 { get; set; }
+        public bool? IsAvailable { get; set; }
+        public bool IsProductSelected { get; set; } = false;
+        public int? Stock { get; set; }
+        public int Price { get; set; }
+
+    }
+
+    private async Task UpdateStyleIfWidthChan()
+    {
+        var element = await Js.InvokeAsync<IJSObjectReference>("eval", "document.querySelector('.css-sidebar')");
+        await element.InvokeVoidAsync("classList.remove", "css-sidebar");
+        await element.InvokeVoidAsync("classList.add", "new-css-sidebar");
+    }
+
+    private async Task UpdateStyleIfWidthRecovery()
+    {
+        var element = await Js.InvokeAsync<IJSObjectReference>("eval", "document.querySelector('.new-css-sidebar')");
+        await element.InvokeVoidAsync("classList.remove", "new-css-sidebar");
+        await element.InvokeVoidAsync("classList.add", "css-sidebar");
+    }
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void NavigateToNewPageIndex()
+    {
+        NavigationManager.NavigateTo("#", true);
+    }
+
+    private void NavigateToNewPageNaytot()
+    {
+        NavigationManager.NavigateTo("naytot", true);
+    }
+
+    int width = 30;
+    int heightI = 43;
+    string heightIkk => $"height: {heightI}px";
+    string borderTop = "0px solid #000;";
+    string borderT => $"border-top: {borderTop};";
+    string sidebarWidth => $"width: {width}px;";
+    string mainMargin => $"margin-left: {width}px;";
+
+    void OpenNav()
+    {
+        width = 300;
+        UpdateStyleIfWidthChan();
+    }
+
+    void CloseNav()
+    {
+        width = 30;
+        UpdateStyleIfWidthRecovery();
+        NavigationManager.NavigateTo("/", false);
+    }
+
+    private string but = "";
+    
+    bool isOpened = true;
+
+    int buttonCount = 1;
+    int currentButton = 0;
+
+    void ButtonClicked(int buttonIndex)
+    {
+        width = buttonIndex;
+    }
+  
+}

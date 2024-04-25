@@ -1,0 +1,23 @@
+﻿@inject IJSRuntime Js
+
+<div class="wrapper">
+    <div class="content">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private async Task HideAccordion()
+    {
+        var element = await Js.InvokeAsync<IJSObjectReference>("document.querySelector", "#accordi1");
+        await element.InvokeVoidAsync("setAttribute", "class", "accordion visib_H");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await HideAccordion();
+    }
+}

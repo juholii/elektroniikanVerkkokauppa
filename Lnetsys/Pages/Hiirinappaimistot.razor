@@ -1,0 +1,134 @@
+﻿@page "/hiirinappaimistot"
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<!-- Hiirinäppäimistöt -->
+
+<div id="hiirinappaimistot" class="container">
+
+    <div class="Hover_area" id="hover_style">
+
+        <div id="open" style="text-align:center">
+
+        </div>
+        <div class="customization-process">
+            
+                <section>
+                    <div class="row people">
+                    <div class="col-md-12 col-lg-12">
+                    <div class="table-responsive text-center">
+
+                        <div class="secondary-title">
+                            <h4>Hiiret ja näppäimistöt</h4>
+                        </div>
+
+                        <div id="id01" class="table t1" style="color:white;"> 
+      
+                            <div style="border-bottom-color:#fff0;">
+
+                                <BlazorModalAll TitleAll="Hiiret / näppäimistöt" IsOpened="isOpened" Items="henkilot" TItemAll="Henkilo">
+                                    <ModalBodyAll>
+                                        <table class="backgcolor">
+                                            <div class="intro">
+                                                Id-numero : @context.NayteId
+                                            </div>
+                                            <tbody id="tBodyElement" @onclick="ToggleHeight" style="@(Selected ? "height:auto;" : "height:none;")">
+                                                <tr class="customization style1">
+                                                    <td>
+                                                        <div class="box" style="cursor: none;"><img class="img10" src="@context.KuvaUrl"></div>
+                                                        @if (!string.IsNullOrEmpty(context.Email))
+                                                        {
+	                                                        <a href="@context.Email" onclick="@context.AikaJaljella"><i aria-hidden="true">Lisätietoa</i></a>
+                                                        }
+                                                        else
+                                                        {
+	                                                        <a href="#" class="hidden-link">Lisätietoa</a>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <!--Profiili-->
+                                                        <div>                                                
+                                                            <div  class="item row">                                                          
+                                                                <div class="front">                                                           
+                                                                    <div class="box"><div class="text-center"><br><span class="clamp">@context.Kuvaus</span></div><br /></div>
+                                                                        <div class="box"><div class="text-center"><br><span class="clamp"></span>@context.Teknologiat</div><br /></div>
+                                                                    <div><hr style="color:black; height:10px"></div>                                                        
+                                                                </div>
+                                                            </div>                                               
+                                                        </div>                                                   
+                                                        <!--Profiili-->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            @if (!string.IsNullOrEmpty(context.VideoUrl))
+                                            {
+                                                <div id="vid00">
+                                                    <video id="vid01" class="vidText" src="@context.VideoUrl" controls="" muted="" loop="" type="video/mp4"></video>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                //
+                                            }
+                                            <hr style="background-color: red;padding: 10px;min-width: 200px;">
+                                        </table>
+                                    </ModalBodyAll>
+                                    <ModalFooterAll>
+                                    </ModalFooterAll>
+                                </BlazorModalAll>
+                            </div>  
+                        </div>   
+                    </div>
+                    </div>
+                    </div>
+                </section>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    public bool Selected { get; set; } = false;
+
+    public void ToggleHeight()
+    {
+        Selected = !Selected;
+    }
+
+    private void NavigateToNewPage()
+    {
+        NavigationManager.NavigateTo("hiirinappaimistot", true);
+    }
+
+         bool isOpened = true;
+
+     private List<Henkilo> henkilot = new()
+    {
+        new Henkilo { NayteId = "1071374756", Email="https://datalnetsys.z6.web.core.windows.net/tuotekuvaus.html", Tila = "", Paikka = "hiirinappaimistot", Saatavilla = "", KoodiUrl = "https://www.elecrow.com/raspberry-pi-3-2b-zero-mini-portable-2-4ghz-wireless-touchpad-keyboard-with-backlight.html", KuvaUrl = "assets/img/wirelessKeyboard1.png", Kuvaus = "Näppäimistö hiiriominaisuudella", Teknologiat = "Elecrow DRA19220W. Sopii myös RPi korttitietokoneeseen", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/minikeyboard1.mp4" },
+        new Henkilo { NayteId = "1594888978", Email="https://datasheets.raspberrypi.com/keyboard-mouse/getting-started-with-keyboard-and-mouse.pdf", Tila = "", Paikka = "hiirinappaimistot", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/rpihiiri.jpg", Kuvaus = "Virallinen hiiri Raspberry Pi -tietokoneille", Teknologiat = "Suunniteltu erityisesti yhteensopivaksi RPi:n kanssa", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="" }
+        // new Henkilo { NayteId = "1525485084", Email="", Tila = "", Paikka = "hiirinappaimistot", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/rpihiiri.jpg", Kuvaus = "Näppärä näppäimistö hiiriominaisuudella", Teknologiat = "Plug and play", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="/video/" }
+    };
+
+    private class Henkilo
+    {
+        public int HenkiloId { get; set; }
+        public string? NayteId { get; set; }  
+        public string? Nimi { get; set; } 
+        public string? Paikka { get; set; }   
+        public string? Tila { get; set; }   
+        public string? Saatavilla { get; set; } 
+        public string? KoodiUrl { get; set; } 
+        public string? KuvaUrl { get; set; } 
+        public string? Kuvaus { get; set; } 
+        public string? Teknologiat { get; set; } 
+        public string? Maksutapahtuma { get; set; } 
+        public string? AikaJaljella { get; set; } 
+        public string? AjanTarkkuus { get; set; } 
+        public string? Email { get; set; } 
+        public string? VideoUrl { get; set; }
+    }
+
+}
+

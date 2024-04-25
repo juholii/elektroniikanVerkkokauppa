@@ -1,0 +1,202 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto",sans-serif;
+}
+
+.tabs {
+    position: fixed;
+    bottom: 0px;
+    transform: translate(0%,0%);
+    overflow: hidden;
+    width: auto;
+    height: 56px;
+    border: 0px solid #f5f5f5;
+    box-shadow: 0px 5px 10px 5px rgba(0,0,0,0.05);
+    z-index: 99;
+    left: 0;
+    right: 0;
+    /*
+        margin-left: 4%;
+        margin-right: 5%;
+    */
+}
+
+.rotatepaneltext_bottom {
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transform: rotateZ(360deg)rotateX(65deg);
+    letter-spacing: -1px;
+    outline-style: none;
+    border: #f3f3f3;
+    text-transform: none;
+    height: 0;
+    bottom: 40px;
+    position: absolute;
+    transform-origin: bottom;
+    padding: 43px;
+    opacity: 1.0;
+    -webkit-text-stroke: thin;
+    right: 0;
+    left: 0;
+    right: 0;
+    border-width: 5px;
+    border-left-width: 36px;
+    border-right-width: 1px;
+    /*
+    font-size: 20px;
+    text-align: center;
+    border-style: inset;
+    background: #484955;
+    */
+}
+
+    .tabs .tab-body {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: calc(100% - 50px);
+    }
+
+        .tabs .tab-body > .tab {
+            position: relative;
+            padding: 20px;
+            top: -100%;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+        }
+
+            .tabs .tab-body > .tab.active {
+                transform: scale(1);
+                opacity: 1;
+                top: 84px;
+                background-color: #f7f7f7;
+                block-size: inherit;
+            }
+
+        .tabs .tab-body h1 {
+            font-size: 25px;
+            color: #222;
+            margin-top: 330px;
+            /* margin: 10px 0px; */
+        }
+
+        .tabs .tab-body p {
+            font-size: 15px;
+            color: #555;
+            margin-top: 330px;
+            /* margin: 10px 0px; */
+        }
+
+    .tabs .wrapper {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        right: 35px;
+    }
+
+    .tabs .tab-header {
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border-top: 6px solid #30353e;
+        box-shadow: 3px 3px 10px rgba(189, 189, 189, 0.6), -3px -4px 15px rgba(255, 255, 255, 0.5);
+        position: relative;
+        z-index: 3;
+        border-radius: 0;
+        border-width: 4px;
+        border-right: groove;
+        border-top-style: solid;
+        padding-left: 2px;
+        border-left: groove;
+        border-left-width: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-right-width: 25px;
+        border-top-width: 4px;
+        color: white;
+        border-left-width: 25px;
+        margin-left: 40px;
+        margin-right: 0px;
+        background-color: #a5a5a5;
+        /*
+        padding: 0px 20px;
+            */
+    }
+
+        .tabs .tab-header .tab-btn {
+            cursor: pointer;
+        }
+
+            .tabs .tab-header .tab-btn i {
+                font-size: 18px;
+                color: black;
+            }
+
+            .tabs .tab-header .tab-btn.active i {
+                color: black;
+                margin-left:30px;
+            }
+
+        .tabs .tab-header .extra-toggle-btn {
+            background: #2e96ff;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: transform 300ms ease-in-out;
+            margin-left:15%;
+        }
+
+    .tabs .tab-extra-menu {
+        width: 100%;
+        background: #fff;
+        max-height: 225px;
+        transition: max-height 300ms ease-in-out;
+    }
+
+        .tabs .tab-extra-menu .list {
+            padding: 10px;
+        }
+
+            .tabs .tab-extra-menu .list .item {
+                padding: 10px;
+                color: #555;
+                cursor: pointer;
+            }
+
+                .tabs .tab-extra-menu .list .item span {
+                    padding-left: 8px;
+                }
+
+    .tabs .wrapper.active .tab-extra-menu {
+        max-height: 500px;
+    }
+
+    .tabs .wrapper.active .tab-header .extra-toggle-btn {
+        transform: rotate(135deg);
+        margin-left: 45%;
+    }
+    
+    .tabs .wrapper.active .tab-header {
+        justify-content: center;
+    }
+
+        .tabs .wrapper.active .tab-header .tab-btn {
+            display: none;
+        }
+
+

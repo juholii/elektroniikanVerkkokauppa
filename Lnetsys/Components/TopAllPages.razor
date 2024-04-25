@@ -1,0 +1,309 @@
+﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="sitemap">
+<div class="sitemap-item-feature">
+  <a @onclick="NavigateToNewPageAll" class="card" title="Osa-alue">
+  <div class="thumb"></div>
+  <article>
+  <TextAnim />
+  </article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageNaytot" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/a-00003-t.jpg"></div>
+	<article>
+	  <h3>Näytöt</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageKorttitietokoneet" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/a-00101-n.jpg"></div>
+	<article>
+	  <h3>Korttitietokoneet</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageHiirinappaimistot" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/hiirinap1.jpg"></div>
+	<article>
+	  <h3>Hiiret / näppäimistöt</h3>
+	</article>
+  </a>
+</div>
+
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageKaapelit" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/microhdmi-to-hdmi.jpg"></div>
+	<article>
+	  <h3>Kaapelit</h3>
+	</article>
+  </a>
+</div>
+<div onload="UpdatePageVisibility" class="sitemap-item">
+  <a @onclick="NavigateToNewPageLaturit" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/app-01501-kaot.jpg"></div>
+	<article>
+		<h3>Laturit / virtalähteet</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageMuistikortit" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/20221216_145841.jpg"></div>
+	<article>
+	  <h3>Muistikortit</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageKamerat" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/rpicam1.jpg"></div>
+	<article>
+	  <h3>Kamerat</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageKamerakaapelit" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/rpicamc1.jpg"></div>
+	<article>
+	  <h3>Kamerakaapelit</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageVerkkolaitteet" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/poe1.jpg"></div>
+	<article>
+		<h3>Verkkolaitteet</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageKotelot" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/20221220_143839.jpg"></div>
+	<article>
+	  <h3>Kotelot</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageAudio" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/aanik1.jpg"></div>
+	<article>
+	  <h3>Audio</h3>
+	</article>
+  </a>
+</div>
+<div class="sitemap-item">
+  <a @onclick="NavigateToNewPageJaahdytys" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/jaahsiil2.jpg"></div>
+	<article>
+	  <h3>Siilet -jäähdytys</h3>
+	</article>
+  </a>
+</div>
+ <div class="sitemap-item">
+  <a @onclick="NavigateToNewPageTyoskentelyalustat" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/matto1.jpg"></div>
+	<article>
+	  <h3>Työskentelyalustat</h3>
+	</article>
+  </a>
+</div> 
+ <div class="sitemap-item">
+  <a @onclick="NavigateToNewPageAvainsarjat" class="card" title="Osa-alue">
+	<div class="thumb"><img src="assets/img/20230213_100726.jpg"></div>
+	<article>
+	  <h3>Avainsarjat</h3>
+	</article>
+  </a>
+</div>
+ <div class="sitemap-item">
+  <a @onclick="NavigateToNewPageMuutuote" class="card" title="Osa-alue">
+			<div class="thumb"><img src="assets/img/Weatherhat1.jpg"></div>
+	<article>
+	  <h3>Muut</h3>
+	</article>
+  </a>
+</div>
+</div>
+
+
+@code {
+	private string activePageId = "";
+	private string updatePageVisibilityElementId = "UpdatePageVisibility()";
+
+	private async Task UpdatePageVisibility()
+	{
+		await Js.InvokeAsync<object>("eval", $"document.querySelectorAll('.container').forEach(c => c.style.display = 'none');");
+		await Js.InvokeAsync<object>("eval", $"document.getElementById('{activePageId}').style.display = 'block';");
+	}
+
+	private void NavigateToNewPageAll()
+	{
+		NavigationManager.NavigateTo("#all", true);
+	}
+
+	private void NavigateToNewPageNaytot()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('naytot').style.display='block';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#naytot", true);
+	}
+	private void NavigateToNewPageKorttitietokoneet()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('korttitietokoneet').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#korttitietokoneet", true);
+	}
+	private void NavigateToNewPageHiirinappaimistot()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('hiirinappaimistot').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#hiirinappaimistot", true);
+	}
+	private void NavigateToNewPageSovitin()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('sovitin').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#sovitin", true);
+	}
+
+	private void NavigateToNewPageVerkkolaitteet()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('verkkolaitteet').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#verkkolaitteet", true);
+	}
+
+	private void NavigateToNewPageMuistikortit()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('muistikortit').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#muistikortit", true);
+	}
+
+	private void NavigateToNewPageKamerat()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('kamerat').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#kamerat", true);
+	}
+
+	private void NavigateToNewPageKamerakaapelit()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('kamerakaapelit').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#kamerakaapelit", true);
+	}
+
+	private void NavigateToNewPageKaapelit()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('kaapelit').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#kaapelit", true);
+	}
+
+	private void NavigateToNewPageKotelot()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('kotelot').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#kotelot", true);
+	}
+
+	private void NavigateToNewPagePidikejateline()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('pidikejateline').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#pidikejateline", true);
+	}
+
+    private void NavigateToNewPageAudio()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('audio').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#audio", true);
+	}
+
+	private void NavigateToNewPageJaahdytys()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('jaahdytys').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#jaahdytys", true);
+	}
+
+	private void NavigateToNewPageLaturit()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('laturit').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#laturit", true);
+	}
+
+	private void NavigateToNewPageAnturit()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('anturit').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#anturit", true);
+	}
+
+	private void NavigateToNewPageTyoskentelyalustat()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('tyoskentelyalustat').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#tyoskentelyalustat", true);
+	}
+
+	private void NavigateToNewPageAvainsarjat()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('avainsarjat').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#avainsarjat", true);
+	}
+
+	private void NavigateToNewPageOhjelmointi()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('ohjelmointi').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#ohjelmointi", true);
+	}
+
+	private void NavigateToNewPageRuuvisarjat()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('ruuvisarjat').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#ruuvisarjat", true);
+	}
+
+	private void NavigateToNewPageEta()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('eta').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#eta", true);
+	}
+
+	private void NavigateToNewPageLedjavalotuote()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('ledjavalotuote').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#ledjavalotuote", true);
+	}
+
+	private void NavigateToNewPageSuojausjapuhdistus()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('suojausjapuhdistus').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('muutuote').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#suojausjapuhdistus", true);
+	}
+
+	private void NavigateToNewPageMuutuote()
+	{
+		var element = "document.getElementById('page-top').style.display='block';document.getElementById('muutuote').style.display='block';document.getElementById('naytot').style.display='none';document.getElementById('korttitietokoneet').style.display='none';document.getElementById('hiirinappaimistot').style.display='none';document.getElementById('sovitin').style.display='none';document.getElementById('verkkolaitteet').style.display='none';document.getElementById('muistikortit').style.display='none';document.getElementById('kamerat').style.display='none';document.getElementById('kamerakaapelit').style.display='none';document.getElementById('kaapelit').style.display='none';document.getElementById('kotelot').style.display='none';document.getElementById('pidikejateline').style.display='none';document.getElementById('audio').style.display='none';document.getElementById('jaahdytys').style.display='none';document.getElementById('laturit').style.display='none';document.getElementById('anturit').style.display='none';document.getElementById('tyoskentelyalustat').style.display='none';document.getElementById('avainsarjat').style.display='none';document.getElementById('ohjelmointi').style.display='none';document.getElementById('ruuvisarjat').style.display='none';document.getElementById('eta').style.display='none';document.getElementById('ledjavalotuote').style.display='none';document.getElementById('suojausjapuhdistus').style.display='none';";
+		Js.InvokeVoidAsync("eval", element);
+		NavigationManager.NavigateTo("#muutuote", true);
+	}
+}

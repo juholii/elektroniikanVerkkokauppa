@@ -1,0 +1,47 @@
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.css-sidbar {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.arrowProje {
+    position: fixed;
+    width: 28px;
+    min-height: 110px;
+    border-bottom: 10px double #e3e3e3;
+    border-bottom-width: 10px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    outline-style: double;
+    background-color: #383d45;
+    border-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-bottom-width: 5px;
+    min-inline-size: 35px;
+    border-right: double;
+    border-right-width: medium;
+    border-right-width: 2px;
+    border-left: double;
+    /*
+        mix-blend-mode: multiply;
+    */
+}
+
+.expanded .arrowProje {
+    transform: rotate(180deg);
+ 
+    background-color:red;
+    height:150px;
+
+}
+
+

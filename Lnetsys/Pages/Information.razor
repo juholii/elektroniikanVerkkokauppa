@@ -1,0 +1,35 @@
+﻿@page "/information"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+@inherits LayoutComponentBase
+
+<section style="font-family: monospace;">
+    <section style="padding-top: 50px;background-color:#30353e;">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto" style="padding-top: 70px;padding-right: 50px;">
+                    <h2 style="color:white;border:outset;">Tuotteet ja tarvikkeet</h2>
+                    <p class="w-lg-50" style="color:white;border:outset;"><br><br>Mikäli olet kiinnostunut löytämään jonkin tuotteen tai tarvikkeen laita pyyntöä tulemaan. Voimme kysynnän mukaan tuoda suosituimpia myyntiin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container py-4 py-lg-5">
+            <hr>
+            <div class="d-flex justify-content-between align-items-center pt-3">
+                <p class="text-muted mb-0">Copyright © 2023 JL-Logistiikka</p>
+            </div>
+        </div>
+
+    </footer>
+</section>
+
+@code{
+    private void NavigateToNewPageIndex()
+    {
+        NavigationManager.NavigateTo("#", true);
+    }
+
+}

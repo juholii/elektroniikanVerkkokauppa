@@ -1,0 +1,21 @@
+.parent {
+    margin-top: 92px;
+    margin-left: 180px;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 1120px;
+    height: 540px;
+}
+
+.child {
+    width: 33.333333%;
+    height: 33.333333%;
+    background-image: url("assets/img/Open.gif");
+    background-position: center;
+    background-size: cover;
+}
+
+.parent:hover .child,
+.parent:focus .child {
+    transform: scale(2.0);
+}

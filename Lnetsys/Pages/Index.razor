@@ -1,0 +1,600 @@
+﻿@page "/"
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+@using System.Collections.Generic
+@using Lnetsys.Components
+@using Microsoft.AspNetCore.Components.Web
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+@using Microsoft.AspNetCore.Components
+
+<div id="wrapper page-top">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion sidebarX">
+	<div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0">
+		</a>
+		<hr class="sidebar-divider my-0" />
+
+		<ul id="accordionSidebar" class="navbar-nav text-light" style="display:none;">							
+            <li class="nav-item" style="margin-left: 0px;"><div class="text-left" style="text-shadow: 2px 2px #000000"><a class="nav-link" href="tuote.html" @onclick="PiilotaElementti"><i class="fas fa-shopping-basket"></i> Ostoksille</a></div></li>
+            <li class="nav-item" style="margin-left: 20px;"><div class="text-left" style="text-shadow: 2px 2px #000000"></div></li>
+		</ul>
+
+		<div class="text-center d-none d-md-inline"><button id="sidebarToggle" class="btn rounded-circle border-0"></button></div>
+	</div>
+    </nav>
+</div>
+
+<div id="Lnetsys"></div>
+<div style="padding-top:20px; border: white;border-bottom: inset;border-width: 4px;place-self: normal;margin-inline: auto;"></div>
+<section class="contact-clean">
+
+    <section class="article-list">
+
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 gy-xl-0 row-cols-1 row-cols-md-2 row-cols-xl-3 d-xl-flex align-items-xl-center gutter-y">
+                <div class="col">
+                    <div class="card border-primary border-2" style="min-height: 420px;">
+                        <div class="card-body text-center p-4">
+                            <span class="badge rounded-pill bg-secondary position-absolute top-0 start-50 translate-middle text-uppercase" style="background: rgb(255,255,255);">Tilaukset</span>
+                            <h6 class="text-uppercase text-muted card-subtitle" style="margin-top: 30px">Alekoodi</h6>
+                            <h4 class="fw-light card-title" style="margin-top: 30px">Hyödynnä pian!</h4>
+                        </div>
+                        <div class="card-footer p-4">
+                            <div>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Tilauksen alekoodi, tilauksen välisumman ylittäessä 100€</span>
+                                        
+                                    </li>
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Täytä asiakastiedot ja käytä sitten koodia kohdassa näytä yhteenveto: ALEKOODI1</span>
+                                    </li>
+                                    <li class="d-flex mb-2"></li>
+                                    <li class="d-flex mb-2"></li>
+                                    <li class="d-flex mb-2"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-primary border-2" style="min-height: 210px;">
+                        <div class="card-body text-center p-4">
+                            <span class="badge rounded-pill bg-secondary position-absolute top-0 start-50 translate-middle text-uppercase" style="background: rgb(255,255,255);">Sovelluskehityspalvelut</span>
+                            <h4 class="fw-light card-title" style="margin-top: 60px">Sopimuksen mukaan</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-primary border-2" style="min-height: 420px;">
+                        <div class="card-body text-center p-4">
+                            <span class="badge rounded-pill bg-secondary position-absolute top-0 start-50 translate-middle text-uppercase" style="background: rgb(255,255,255);">Komponentit</span>
+                            <h6 class="text-uppercase text-muted card-subtitle" style="margin-top: 30px">Kevyt esittelyversio yrityksille</h6>
+                            <h4 class="fw-light card-title" style="margin-top: 30px">0€</h4>
+                        </div>
+                        <div class="card-footer p-4">
+                            <div>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Komponentin esittely avaustarjoushintaan&nbsp;</span>
+                                    </li>
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Kotisivuille</span>                                    
+                                    </li>
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Verkkosovelluksiin</span>
+                                    </li>
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>IoT-ratkaisuihin</span>
+                                    </li>
+                                    <li class="d-flex mb-2">
+                                        <span class="bs-icon-xs bs-icon-rounded bs-icon-primary-light bs-icon me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check-lg text-primary">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Muihin tarpeisiin</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4 py-lg-5">
+            
+            <div class="row justify-content-center" style="border: white;border-bottom: inset;border-width: 4px;place-self: normal;margin-inline: auto;flex:auto;">
+
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" @onclick="TogglePopupC" style="flex-wrap:wrap;">
+                    <h3 class="fs-6 text-light" style="border: white;border-bottom: inset;border-width: 4px;align-self: baseline;">Tuotteet ja tarvikkeet <i class="fa fa-info-circle"></i></h3>
+                </div>
+
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item" @onclick="TogglePopupA" style="flex-wrap:wrap;">
+                    <h3 class="fs-6 text-light" style="border: white;border-bottom: inset;border-width: 4px;align-self: baseline;">Komponentit <i class="fa fa-info-circle"></i></h3>
+                </div>
+
+            </div>
+            <hr style="border-color: white;">
+        </div>
+    </section>
+</section>
+
+@if (showPopupA)
+{
+    <div class="popup-overlay">
+        <div class="popup-content" style="overflow: auto;">
+            <button style="position: fixed;top:70px;right:50px;background-color: black;color: white;" @onclick="TogglePopupA">Sulje</button>
+            <h2>Komponentit</h2>
+            <p>Luomme verkkosovellukseesi tai sivuihin komponentit - Katso lisää palveluista >>></p>
+            <h2>Työkalut ja teknologiat</h2>
+            <p>Käytämme kustomoitujen komponenttien luomisessa useita työkaluja ja teknologioita.</p>
+            <h2>Esimerkki toteutuksesta</h2>
+            <ul>
+                <li>Luomme tarpeitasi vastaavat komponentit jotka ovat integroitavissa verkkosovellukseesi tai sivustoosi</li>
+                <li>Julkaisemme komponentit Azure: ssa</li>
+                <li>Tarjoamme lisäksi tuotteita ja tuotepaketteja, näitä voidaan hyödyntää jos liittyvät toteutukseen</li>
+                <li>Katsotaan muut lisäpalvelut ja asennukset</li>
+                <li>Ylläpidämme komponentteja</li>
+            </ul>           
+        </div>
+    </div>
+}
+
+@if (showPopupC)
+{
+    <div class="popup-overlay">
+        <div class="popup-content" style="overflow: auto;">
+            <button style="position: fixed;top:70px;right:50px;background-color: black;color: white;" @onclick="TogglePopupC">Sulje</button>
+            <h2>Aloituspaketit</h2>
+            <p>Valmiita aloituspaketteja. Aloita nopeasti projektisi.</p>
+            <h2>Käytetyt tuotteet ja tarvikkeet</h2>
+            <p>Katso löytönurkkaus.</p>
+            <h2>Tuotteita ja tarvikkeita kuten</h2>
+            <ul>
+                <li>Korttitietokoneet</li>
+                <li>Pienet kosketusnäytöt</li>                
+                <li>Pienet kaiuttimet</li>
+                <li>Pienet kamerat</li>
+                <li>Kosketuslevynäppäimistöt</li>
+                <li>Kaapelit</li>
+                <li>Suojakotelot</li>
+                <li>Virtalähteet</li>
+            </ul>          
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div id=rowpeopl class="row people">
+        <div class="col-md-12 col-lg-12 item">
+            <div class="table-responsive text-center">
+                <div id="id01" class="table t1" style="color:white;">
+
+                    <div style="padding-left: 0px;">
+
+                        <div style="border:double; border-width:2px;margin-top:0px;border-left-style: hidden;border-right-style: hidden;border-bottom-style: hidden;">
+                            <div class="nav-item" style="margin-left: 0px;"><span> Tuotevinkit | Brändit | Tulossa</span></div>                           
+                        </div>   
+                        <input @onload="ActivateToVinkit" type="checkbox" id="open-item" name="image-gallery" style="margin-top:15px;" />
+                        <label for="open-item" class="custom-button">Avaa tästä</label>
+                        <div id="slideit" class="testimonials-clean">
+                                
+                            <input id="close-itemA" name="image-gallery" type="radio" checked="checked" />
+                            <label id="close-itemB" for="open-item" class="open" style="border-color: goldenrod;border-style: double;border-width: 1px;opacity:0;"><i class="fas fa-star" style="color:#0071c1;"></i></label>
+                            <section>
+
+                                <label for="close-itemA" class="close" style="display:none;">&times;</label>
+
+                                <input id="image-1" name="images" type="radio" checked="checked" />
+                                <input id="image-2" name="images" type="radio" />
+                                <input id="image-3" name="images" type="radio" />
+ 
+                                <div class="img-1">
+  
+                                    <label for="image-3" class="arrow left">&#8249;</label>
+                                    <label for="image-2" class="arrow right">&#8250;</label>
+
+                                    <div class="caption">
+                                        <span class="title" style="color:white">Tuotevideot, vinkit ja linkit</span>
+                                        <hr />
+                                        <a href="https://tuotevinkit.com">
+                                            <img style="min-height: 300px;" src="assets/img/tuotevinkit_logo.png" />
+                                        </a>                                       
+                                        <hr />
+                                        <BlazorModal Title="Osa näiden vinkkien tuotteista on juuri nyt myynnissä tai ovat olleet aikaisemmin esillä" IsOpened="isOpened" Items="henkilot" TItem="Henkilo">
+              
+                                        </BlazorModal>
+                                    </div>
+                                </div>
+
+                                <div class="img-2">
+
+                                    <label for="image-1" class="arrow left">&#8249;</label>
+                                    <label for="image-3" class="arrow right">&#8250;</label>
+
+                                    <img src="assets/img/M105.jpg" />
+  
+                                    <div class="caption">
+                                        <span class="title" style="color:white">Brändit</span>
+                                        <hr />
+                                        <p>BEST</p>
+                                        <p>Duratool</p>
+                                        <p>Elecrow</p>
+                                        <p>Freenove</p>
+                                        <p>GeeekPi</p>
+                                        <p>Goobay</p>
+                                        <p>LogiLink</p>
+                                        <p>Nedis </p>
+                                        <p>Okdo</p>
+                                        <p>Osoyoo</p>
+                                        <p>Qinglee</p>
+                                        <p>Raspberry</p>
+                                        <p>Sabrent</p>
+                                        <p>Saipwell</p>
+                                        <p>Totem</p>
+                                        <p>Transcend</p>
+                                        <p>Waveshare</p>
+                                    </div>
+                                </div>
+ 
+                                <div class="img-3">
+ 
+                                    <label for="image-2" class="arrow left">&#8249;</label>
+                                    <label for="image-1" class="arrow right">&#8250;</label>
+
+                                    <img src="assets/img/M110.jpg" />
+ 
+                                    <div class="caption">
+                                        <span class="title" style="color:white;">Tulossa lisää tuotteita</span>
+                                        <hr />
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="page-top" style="display:none">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!--
+                        <input type="checkbox" id="close-item">
+                        -->
+                        <section class="linkvink" style="position:unset;contain: content;">
+
+                            <div id="naytot" class="container" style="display:none">
+                                <Naytot />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="kaapelit" class="container" style="display:none">
+                                <Kaapelit />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="hiirinappaimistot" class="container" style="display:none">
+                                <Hiirinappaimistot />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="kotelot" class="container" style="display:none">
+                                <Kotelot />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="muistikortit" class="container" style="display:none">
+                                <Muistikortit />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="verkkolaitteet" class="container" style="display:none">
+                                <Verkkolaitteet />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="kamerakaapelit" class="container" style="display:none">
+                                <Kamerakaapelit />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="kamerat" class="container" style="display:none">
+                                <Kamerat />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="korttitietokoneet" class="container" style="display:none">
+                                <Korttitietokoneet />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="audio" class="container" style="display:none">
+                                <Audio />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="jaahdytys" class="container" style="display:none">
+                                <Jaahdytys />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="laturit" class="container" style="display:none">
+                                <Laturit />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="tyoskentelyalustat" class="container" style="display:none">
+                                <Tyoskentelyalustat />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="avainsarjat" class="container" style="display:none">
+                                <Avainsarjat />
+                            </div>
+                            <hr hidden style="color:#8586a1;display:none" />
+                            <div id="muutuote" class="container" style="display:none">
+                                <Muutuote />
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="outline: double;color: white;text-align: center;">Alla osa asiakkaistamme</div>
+
+<section>
+    <div class="card" style="#30353e;color:black;background-color: rgb(247 247 247);">
+        <h3 style="padding: 10px;">------ Oy</h3>
+        <div class="card__body" style="padding: 0 40px;display: flex;flex-flow: row no-wrap;margin-bottom: 25px;">
+            <div class="half" style="box-sizing: border-box;padding: 0 15px;flex: 1 0 50%;">
+                <div class="featured_text">
+                    <p style="color: black;" class="sub">case</p>
+                </div>
+                <div class="image" style="padding-top: 15px;width: 100%;">
+                    <img class="imgzm1" style="display: block;max-width: 100px;height: auto;" src="" alt="">
+                </div>
+            </div>
+            <div class="half">
+                <div class="description" style="margin-bottom: 25px;">
+                    <p style="color: black;"><strong>Tuotehankinnat</strong> Jaana oli kiinnostunut saamaan tarjouksen elektroniikan aloituspaketista</p>
+                </div>
+            </div>
+        </div>
+        <div class="card__title" style="display: flex;align-items: center;padding: 60px 10px;">
+            <div class="icon" style="background: #30353e;color: #fff;padding: 10px 10px;">
+                2024
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="#30353e;color:black;background-color: rgb(247 247 247);">
+        <h3 style="padding: 10px;">------ Oy</h3>
+        <div class="card__body" style="padding: 0 40px;display: flex;flex-flow: row no-wrap;margin-bottom: 25px;">
+            <div class="half" style="box-sizing: border-box;padding: 0 15px;flex: 1 0 50%;">
+                <div class="featured_text">
+                    <p style="color: black;" class="sub">case</p>
+                </div>
+            </div>
+            <div class="half">
+                <div class="description" style="margin-bottom: 25px;">
+                    <p style="color: black;"><strong>Tuotehankinnat</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="card__title" style="display: flex;align-items: center;padding: 60px 10px;">
+            <div class="icon" style="background: #30353e;color: #fff;padding: 10px 10px;">
+                2024
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="#30353e;color:black;background-color: rgb(247 247 247);">
+        <h3 style="padding: 10px;">Yritysasiakas, Kimmo</h3>
+        <div class="card__body" style="padding: 0 40px;display: flex;flex-flow: row no-wrap;margin-bottom: 25px;">
+            <div class="half" style="box-sizing: border-box;padding: 0 15px;flex: 1 0 50%;">
+                <div class="featured_text">
+                    <p style="color: black;" class="sub">case</p>
+                </div>
+            </div>
+            <div class="half">
+                <div class="description" style="margin-bottom: 25px;">
+                    <p style="color: black;"><strong>Tuotehankinnat</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="card__title" style="display: flex;align-items: center;padding: 60px 10px;">
+            <div class="icon" style="background: #30353e;color: #fff;padding: 10px 10px;">
+                2024
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="#30353e;color:black;background-color: rgb(247 247 247);">
+        <h3 style="padding: 10px;">------ Oy</h3>
+        <div class="card__body" style="padding: 0 40px;display: flex;flex-flow: row no-wrap;margin-bottom: 25px;">
+            <div class="half" style="box-sizing: border-box;padding: 0 15px;flex: 1 0 50%;">
+                <div class="featured_text">
+                    <p style="color: black;" class="sub">case</p>
+                </div>
+            </div>
+            <div class="half">
+                <div class="description" style="margin-bottom: 25px;">
+                    <p style="color: black;"><strong>Tuotehankinnat</strong> Teollisuuskotelo</p>
+                </div>
+            </div>
+        </div>
+        <div class="card__title" style="display: flex;align-items: center;padding: 60px 10px;">
+            <div class="icon" style="background: #30353e;color: #fff;padding: 10px 10px;">
+                2023
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="#30353e;color:black;background-color: rgb(247 247 247);">
+        <h3 style="padding: 10px;">------ Oy</h3>
+        <div class="card__body" style="padding: 0 40px;display: flex;flex-flow: row no-wrap;margin-bottom: 25px;">
+            <div class="half" style="box-sizing: border-box;padding: 0 15px;flex: 1 0 50%;">
+                <div class="featured_text">
+                    <p style="color: black;" class="sub">case</p>
+                </div>
+            </div>
+            <div class="half">
+                <div class="description" style="margin-bottom: 25px;">
+                    <p style="color: black;"><strong>Tuotehankinnat</strong> NFC-lukija</p>
+                </div>
+            </div>
+        </div>
+        <div class="card__title" style="display: flex;align-items: center;padding: 60px 10px;">
+            <div class="icon" style="background: #30353e;color: #fff;padding: 10px 10px;">
+                2023
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="sitemap-item-feature">
+    <section id="over_In" class="over_Box">
+        <div class="container">
+            <section class="highlight-blue" style="color:white;border-top: inset;border-width: 4px;">
+                <div class="container" style="width: 95%;">
+                    <div class="intro" style="border: white;">
+                        <h2 id="yleista" class="text-center">Yleistä tietoa</h2>
+                        <ul class="gift-list-head">
+                            <li>Meiltä voit ostaa monilla maksutavoilla.<br /><br /></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div style="background-color:#30353e;border-top-style:dashed;border-bottom-style:inset;border-left-style:inset;border-right-style:inset;border-color:#eeeeee;margin:0px;padding:10px;">
+            <div style="border-top-style: solid;border-color: #eeeeee;">
+                <strong id="indextags" style="color: #eeeeee;margin:50px;border-color:#eeeeee;border-bottom-style:solid;">| Ehdot|<br /><br /></strong>
+            </div>
+
+            <article class="text-center" style="margin-left:5px;margin-right:50px;color: #fff;padding:0px;">
+                <strong>Yleiset sopimusehdot</strong>              
+            </article>
+        </div>
+        <section>
+            <Information />
+        </section>
+    </section>
+</div>
+
+<TopCategories />
+
+<MobileTabs />
+
+@code{
+
+    private bool showPopupA = false;
+
+    private void TogglePopupA()
+    {
+        showPopupA = !showPopupA;
+    }
+
+    private bool showPopupB = false;
+
+    private void TogglePopupB()
+    {
+        showPopupB = !showPopupB;
+    }
+
+    private bool showPopupC = false;
+
+    private void TogglePopupC()
+    {
+        showPopupC = !showPopupC;
+    }
+
+    bool elementtiPiilotettu = true;
+
+    async Task PiilotaElementti()
+    {
+        elementtiPiilotettu = false;
+        await Js.InvokeVoidAsync("eval", "document.querySelector('.rotatepaneltext').style.display = 'none';");
+    }
+
+    void LataaElementti()
+    {
+        if (elementtiPiilotettu)
+        {
+            elementtiPiilotettu = true;
+            Js.InvokeVoidAsync("eval", "document.querySelector('.rotatepaneltext').style.display = 'block';");
+        }
+    }
+
+    private void ActivateToVinkit()
+    {
+        var element = "document.getElementById('testimonials-clean').style.display='block';";
+        Js.InvokeVoidAsync("eval", element);
+        //NavigationManager.NavigateTo("#naytot", true);
+    }
+
+    private async Task openImg()
+    {
+        await Js.InvokeVoidAsync("openImgM");
+    }
+
+    bool showContent = true;
+
+    bool isOpened = true;
+
+    private List<Henkilo> henkilot = new()
+    {
+
+    };
+
+    private class Henkilo
+    {
+        public int HenkiloId { get; set; }
+        public string? NayteId { get; set; }
+        public string? Nimi { get; set; }
+        public string? Paikka { get; set; }
+        public string? Tila { get; set; }
+        public string? Saatavilla { get; set; }
+        public string? KoodiUrl { get; set; }
+        public string? KuvaUrl { get; set; }
+        public string? Kuvaus { get; set; }
+        public string? Teknologiat { get; set; }
+        public string? Maksutapahtuma { get; set; }
+        public string? AikaJaljella { get; set; }
+        public string? AjanTarkkuus { get; set; }
+        public string? Email { get; set; }
+        public string? Ilmoitus { get; set; }
+        public string? VideoUrl { get; set; }
+    }
+}
+
+

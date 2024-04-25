@@ -1,0 +1,56 @@
+﻿@typeparam TItem
+@using System.Diagnostics.CodeAnalysis
+
+<div class="blazor-modal @cssClass">
+    <div class="intro">
+
+        <br /><br /><br /><br />
+    </div>
+    <TopAllPages />
+    <section id="hakuikkuna"></section>
+
+    <div class="blazor-modal-content">
+        <div class="blazor-modal-header">
+            <h5 class="blazor-modal-title">@Title</h5> 
+        </div>
+        <div class="blazor-modal-body">
+            @foreach (var item in Items)
+            {
+                if (ModalBody is not null)
+                {
+                    @ModalBody(item)
+                }
+            }
+        </div>
+        <div class="blazor-modal-footer">
+
+            @foreach (var item in Items)
+            {
+                if (ModalFooter is not null)
+                {
+                    @ModalFooter(item)
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem>? ModalBody { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem>? ModalFooter { get; set; }
+
+    [Parameter]
+    public bool IsOpened { get; set; }
+
+    string cssClass => IsOpened ? "show" : "hide";
+
+    [Parameter, AllowNull]
+    public IReadOnlyList<TItem> Items { get; set; }
+}

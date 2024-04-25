@@ -1,0 +1,140 @@
+﻿@page "/pidikejateline"
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<!-- Pidike / teline -->
+
+<div id="pidikejateline" class="container">
+
+    <div class="Hover_area" id="hover_style">
+
+        <div id="open" style="text-align:center">
+
+        </div>
+        <div class="customization-process">
+                
+				<section>
+					<div class="row people">
+					<div class="col-md-12 col-lg-12">
+					<div class="table-responsive text-center">
+
+                        <div class="secondary-title">
+                            <h4>Pidike / teline / levyt</h4>
+                        </div>
+
+						<div id="id01" class="table t1" style="color:white;">               
+	
+							<div class="intro">
+								<div style="background-color:#330808" >         
+								</div>
+							</div>  
+							<div style="border-bottom-color:#fff0;">
+
+                                <BlazorModalAll TitleAll="Pidike / teline / levyt" IsOpened="isOpened" Items="henkilot" TItemAll="Henkilo">
+                                    <ModalBodyAll>
+                                        <table class="backgcolor">
+                                            <div class="intro">
+                                                Id-numero: #@context.NayteId
+                                            </div>
+                                            <tbody id="tBodyElement" @onclick="ToggleHeight" style="@(Selected ? "height:auto;" : "height:none;")">
+                                                <tr class="customization style1">
+                                                    <td>
+                                                        <div class="box" style="cursor: none;"><img class="img10" src="@context.KuvaUrl"></div>
+                                                        @if (!string.IsNullOrEmpty(context.Email))
+                                                        {
+	                                                        <a href="@context.Email" onclick="@context.AikaJaljella"><i aria-hidden="true">Lisätietoa</i></a>
+                                                        }
+                                                        else
+                                                        {
+	                                                        <a href="#" class="hidden-link">Lisätietoa</a>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <!--Profiili-->
+                                                        <div>
+                                                            <div class="item row">
+                                                                <div class="front">
+                                                                    <div class="box"><div class="text-center"><br><span class="clamp">@context.Kuvaus</span></div><br /></div>
+                                                                    <div class="box"><div class="text-center"><br><span class="clamp"></span>@context.Teknologiat</div><br /></div>
+                                                                    <div><hr style="color:black; height:10px"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Profiili-->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            @if (!string.IsNullOrEmpty(context.VideoUrl))
+                                            {
+                                                <div id="vid00">
+                                                    <video id="vid01" class="vidText" src="@context.VideoUrl" controls="" muted="" loop="" type="video/mp4"></video>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                //
+                                            }
+                                            <hr style="background-color: red;padding: 10px;min-width: 200px;">
+                                        </table>
+                                    </ModalBodyAll>
+                                    <ModalFooterAll>
+
+                                    </ModalFooterAll>
+                                </BlazorModalAll>
+                            </div>  
+						</div>   
+					</div>
+					</div>
+					</div>
+				</section>
+
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public bool Selected { get; set; } = false;
+
+    public void ToggleHeight()
+    {
+        Selected = !Selected;
+    }
+
+    private void NavigateToNewPage()
+    {
+        NavigationManager.NavigateTo("pidikejateline", true);
+    }
+
+     bool isOpened = true;
+
+     private List<Henkilo> henkilot = new()
+    {
+        new Henkilo { NayteId = "891187687", Email="", Tila = "", Paikka = "pidikejateline", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/Totem-levyleikkuri.jpg", Kuvaus = "Totem levyleikkuri", Teknologiat = "Leikkausviivalla tasaiset leikkaukset -suorat / vinot", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/Board-Cutter-Totem.mp4" },
+        new Henkilo { NayteId = "982810296", Email="", Tila = "", Paikka = "pidikejateline", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/Totem-muovilevyt.jpg", Kuvaus = "Helposti leikattavat muovilevyt, miellyttävä käyttää", Teknologiat = "Totem; Mitat: 100×100 mm. Materiaali: PC/ABS (muovi)", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/Board-Cutter-Totem.mp4" },
+        new Henkilo { NayteId = "1072481293", Email="", Tila = "", Paikka = "pidikejateline", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/Totem-muovilevyt-30x100.jpg", Kuvaus = "Helposti leikattavat muovilevyt, miellyttävä käyttää", Teknologiat = "Totem; Mitat: 30×100 mm. Materiaali: PC/ABS (muovi)", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/Board-Cutter-Totem.mp4" },
+        new Henkilo { NayteId = "1857960348", Email="", Tila = "", Paikka = "pidikejateline", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/animation/", Kuvaus = "Totem-palkit, 400x10x10 mm", Teknologiat = "Leikattavat palkit", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="" }
+        //new Henkilo { NayteId = "ve-01105-it", Email="", Tila = "", Paikka = "pidikejateline", Saatavilla = "", KoodiUrl = "", KuvaUrl = "assets/img/animation/Style 2.gif", Kuvaus = "", Teknologiat = "", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="" }
+    };
+
+    private class Henkilo
+    {
+	    public int HenkiloId { get; set; }
+	    public string? NayteId { get; set; }  
+	    public string? Nimi { get; set; } 
+	    public string? Paikka { get; set; }   
+	    public string? Tila { get; set; }   
+	    public string? Saatavilla { get; set; } 
+	    public string? KoodiUrl { get; set; } 
+	    public string? KuvaUrl { get; set; } 
+	    public string? Kuvaus { get; set; } 
+	    public string? Teknologiat { get; set; } 
+	    public string? Maksutapahtuma { get; set; } 
+	    public string? AikaJaljella { get; set; } 
+		public string? AjanTarkkuus { get; set; }
+	    public string? Email { get; set; } 
+		public string? VideoUrl { get; set; }
+    }
+
+}
+

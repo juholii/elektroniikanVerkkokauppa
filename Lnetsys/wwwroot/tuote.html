@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#30353e" />
+    <title>Lnetsys</title>
+    <link href="manifest.webmanifest" rel="manifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        html {
+            background-color: #30353e;
+            border-top-style: outset;
+            color: white;
+            text-align: center;
+            margin-right: 0px;
+        }
+
+        .table {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .table-cell {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .sar1, .sar2, .sar3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-pos {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: black;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            .btn-pos:hover {
+                background-color: #0056b3;
+            }
+
+        @media (max-width: 600px) {
+            .table {
+                grid-template-columns: 1fr;
+            }
+
+            .img-posti {
+                margin-inline: auto;
+            }
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+            padding-right: 20px;
+            padding-left: 20px;
+            margin: 0px;
+            padding-left: 40px;
+            padding-right: 40px;
+            background-image: url(assets/img/lnetsys_rpi.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 48px 48px;
+        }
+
+        div {
+            background-color: #30353e;
+            margin: 0px;
+        }
+
+        label {
+            color: #626262;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        ul, ol {
+            list-style-type: none;
+        }
+
+        .cart-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 45px;
+            width: 35px;
+            height: 35px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            margin-top: 5px;
+            z-index: 0;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f00;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .cart-icon-home {
+            font-size: 24px;
+        }
+
+        app {
+            display: none;
+        }
+
+        .accordion-item {
+            display: none;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: -350px;
+            background-color: #333;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            z-index: 1;
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            padding: 3px;
+            border: 3px solid #ffffff;
+            border-radius: 10%;
+        }
+
+        @media screen and (min-width: 651px) {
+            .menu-toggle::after {
+                content: " Kategoriat";
+            }
+        }
+
+        .footer {
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+            .footer a {
+                color: #b7b7b7;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .footer-header {
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+            .footer-header img {
+                max-width: 150px;
+                display: block;
+                margin: 0 auto;
+            }
+
+        .wavy-line {
+            width: 100%;
+            height: 3px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 100%;
+            left: 0px;
+            background-color: #00acd2;
+            padding: 5px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: left;
+            padding: 20px;
+        }
+
+            .footer-section h2 {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+            .footer-menu li {
+                margin-bottom: 10px;
+            }
+
+            .footer-menu a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+        .footer-social {
+            margin-top: 20px;
+        }
+
+            .footer-social a {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: #fff;
+            }
+
+        .map {
+            width: 100%;
+            height: 220px;
+        }
+
+        .footer-section * {
+            background-color: transparent;
+        }
+
+        .footer-link .description {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .footer-link:hover .description {
+            display: block;
+        }
+
+        #slideit input[type="radio"] {
+            display: none;
+        }
+
+        /*  ==================
+        3. MAIN STYLES
+        ==================  */
+
+        #slideit {
+            z-index: 9999;
+            position: relative;
+            width: auto;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+            /***** Main styles *****/
+
+            #slideit section {
+                margin: 0;
+                overflow: hidden;
+                width: 340px;
+                height: 100%;
+                left: 0;
+                margin-top: 0;
+                position: fixed;
+                z-index: 10;
+                background: #fff;
+                border-bottom: 6px solid #b4495f;
+                -webkit-backface-visibility: hidden;
+            }
+
+            #slideit section,
+            #slideit input#close-item:checked ~ section {
+                /* Section position when closed */
+                -webkit-transform: translateX(-100%);
+                -moz-transform: translateX(-100%);
+                -ms-transform: translateX(-100%);
+                -o-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+
+            #slideit input#open-item:checked ~ section {
+                /* Section position when opened */
+                -webkit-transform: translateX(0);
+                -moz-transform: translateX(0);
+                -ms-transform: translateX(0);
+                -o-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            #slideit section .img-1,
+            #slideit section .img-2,
+            #slideit section .img-3,
+            #slideit section .img-4,
+            #slideit section .img-5 {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 0;
+                padding-top: 50px;
+            }
+
+            #slideit section input#image-1:checked ~ .img-1,
+            #slideit section input#image-2:checked ~ .img-2,
+            #slideit section input#image-3:checked ~ .img-3,
+            #slideit section input#image-4:checked ~ .img-4,
+            #slideit section input#image-5:checked ~ .img-5 {
+                opacity: 1;
+                visibility: visible;
+                z-index: 10;
+            }
+
+            #slideit section img {
+                width: 100%;
+                height: auto;
+            }
+
+            #slideit .caption {
+                position: relative;
+                width: 100%;
+                padding: 16px 30px 20px 30px;
+            }
+
+                #slideit .caption span.title {
+                    color: white;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                }
+
+                #slideit .caption p {
+                    font-size: 12px;
+                    color: #999;
+                }
+
+                    #slideit .caption p a {
+                        color: #222;
+                    }
+
+                        #slideit .caption p a:hover {
+                            text-decoration: underline;
+                        }
+
+            /***** Labels *****/
+
+            #slideit label.open,
+            #slideit label.close {
+                text-align: center;
+                position: absolute;
+            }
+
+            #slideit label.open {
+                font-size: 11px;
+                color: #222;
+                background: #fff;
+                width: 22px;
+                top: 0;
+                left: -101px;
+                right: auto;
+                bottom: auto;
+                margin: 0 auto;
+                padding: 10px 0;
+                text-transform: uppercase;
+                z-index: 1;
+            }
+
+            #slideit input#close-item:checked ~ label.open {
+                left: 0;
+            }
+
+            #slideit label.open:hover,
+            #slideit label.open:focus {
+                background: #222;
+                color: #fff;
+            }
+
+            #slideit label.close {
+                right: 30px;
+                left: auto;
+                top: 0;
+                bottom: auto;
+                font-size: 20px;
+                background: #b4495f;
+                color: #fff;
+                width: 22px;
+                z-index: 999;
+                padding-top: 0;
+            }
+
+                #slideit label.close:hover,
+                #slideit label.close:focus {
+                    background: #9f3648;
+                }
+
+            #slideit section label.arrow {
+                position: absolute;
+                top: 95%;
+                color: black;
+                font-size: 100px;
+                z-index: 9999;
+                opacity: 0.4;
+            }
+
+                #slideit section label.arrow:hover,
+                #slideit section label.arrow:focus {
+                    opacity: 1;
+                }
+
+            #slideit section label.left {
+                left: 20px;
+            }
+
+            #slideit section label.right {
+                right: 20px;
+            }
+
+            /***** Transitions *****/
+
+            #slideit label {
+                -webkit-transition: all 0.1s ease-in-out;
+                -moz-transition: all 0.1s ease-in-out;
+                -ms-transition: all 0.1s ease-in-out;
+                -o-transition: all 0.1s ease-in-out;
+                transition: all 0.1s ease-in-out;
+            }
+
+            #slideit section div {
+                -webkit-transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
+                -moz-transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
+                -ms-transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
+                -o-transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
+                transition: opacity 0.8s ease 0s, visibility 0.8s ease 0s;
+            }
+
+            #slideit section {
+                -webkit-transition: all 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+                -moz-transition: all 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+                -ms-transition: all 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+                -o-transition: all 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+                transition: all 0.4s cubic-bezier(0.2, 0.6, 0.3, 1);
+            }
+
+            #slideit input#close-item:checked ~ label.open {
+                -webkit-transition: left 0.3s ease 0.4s, background 0.1s ease, color 0.1s ease;
+                -moz-transition: left 0.3s ease 0.4s, background 0.1s ease, color 0.1s ease;
+                -ms-transition: left 0.3s ease 0.4s, background 0.1s ease, color 0.1s ease;
+                -o-transition: left 0.3s ease 0.4s, background 0.1s ease, color 0.1s ease;
+                transition: left 0.3s ease 0.4s, background 0.1s ease, color 0.1s ease;
+            }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #accept-cookies {
+            background-color: #008000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .cookie-button {
+            padding: 10px 20px;
+            background-color: #4a4a4a;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .cookie-notice {
+            position: fixed;
+            bottom: 5px;
+            z-index: 9999;
+            left: 5px;
+            right: 5px;
+            box-shadow: 0px 1px 5px 0px rgba(0,0,0,.3019607843),0px 5px 20px 6px rgba(0,0,0,.1490196078);
+            background: #fff;
+            border-radius: 5px;
+            color: black;
+            padding: 10px;
+            box-shadow: 5px 5px 5px 5px #0c0c0c, 5px 5px 5px 5px #6f6f6f, 5px 5px 5px 5px #d0f4ff;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-button {
+                padding: 8px 16px;
+                margin-right: 5px;
+            }
+        }
+
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 8px;
+            right: 13px;
+            width: 170px;
+            height: 50px;
+            border-radius: 8%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #25D366;
+            z-index: 9998;
+            display: none;
+        }
+
+        .close-button {
+            display: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .whatsapp-icon {
+                width: 50px;
+            }
+
+            .w-text {
+                display: none;
+            }
+
+            .close-button {
+                display: none;
+            }
+        }
+
+        body .coo-lay {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            padding: 90px 0px;
+            z-index: 9999;
+            position: fixed;
+            bottom: 0px;
+            left: 0;
+        }
+
+        body .coo-lay-text {
+            color: #000 !important;
+            font-size: 14px !important;
+        }
+
+        .coo-lay p {
+            width: 290px;
+        }
+
+        .coo-lay-controls {
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 5px;
+            justify-content: center;
+        }
+
+        button.button\.accept {
+            background-color: #4a4a4a;
+            border: none;
+            border-radius: 20px;
+            width: 200px;
+            padding: 8px 16px;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0px 6px 18px -5px rgb(0, 0, 0);
+        }
+
+        button.button\.reject {
+            background-color: #008000;
+            border: none;
+            border-radius: 20px;
+            width: 200px;
+            padding: 8px 16px;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0px 6px 18px -5px rgb(0, 0, 0);
+            margin-top: 5px;
+        }
+
+        .navigation-out {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation-out-m {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+        }
+
+        .navigation-item {
+            position: relative;
+            color: #fff;
+            font-family: 'LabGrotesque', sans-serif;
+            font-size: 13px;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            font-weight: 900;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+            .navigation-item:hover {
+                color: #919191;
+            }
+
+            .navigation-item .dropdown {
+                top: 0;
+                left: 0;
+                color: #fff;
+                font-family: 'LabGrotesque', sans-serif;
+                font-size: 13px;
+                letter-spacing: 1.3px;
+                text-transform: none;
+                font-weight: 900;
+                padding-top: 0;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s ease-in-out;
+            }
+
+            .navigation-item:hover .dropdown {
+                height: 50px;
+            }
+
+        .popupadd {
+            position: fixed;
+            right: 0;
+            bottom: 40px;
+            width: 33.3%;
+            height: auto;
+            background-color: #30353e;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-left: none;
+            border-right: 0px solid #05a0c3;
+        }
+
+        .closeadd {
+            position: absolute;
+            bottom: 0px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border: none;
+            background-color: transparent;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            color: black;
+            background: white;
+        }
+
+        .arrowadd {
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            background-color: transparent;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transform: translateY(-50%);
+            color: #00acd2;
+            border-width: 1px;
+            border-style: inset;
+            background: #30353e;
+            outline: outset;
+            font-weight: bolder;
+            box-shadow: 5px 0px 4px 1px #00acd2;
+            cursor: pointer;
+        }
+
+            .arrowadd + .labeladd {
+                display: none;
+            }
+
+        .arrowadd {
+            appearance: none;
+        }
+
+            .arrowadd::after {
+                content: ">";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .arrowadd:checked::after {
+                content: "<";
+            }
+
+        .contentadd {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .saleadd {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .validadd {
+            font-size: 14px;
+            color: white;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .popupadd {
+                width: 33.3%;
+                height: 25%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popupadd {
+                width: 50%;
+                height: 20%;
+            }
+        }
+
+        @media (orientation: landscape) {
+            .popupadd {
+                width: auto;
+                height: auto;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <a href="/tuote.html">
+        <h1>Lnetsys</h1>
+    </a>
+
+    <div style="text-align:center;">
+        <div data--type="product-search">
+        </div>
+
+        <div class="navigation-out">
+            <div class="navigation-out-m">
+                <div class="navigation-item">
+                    <div>
+                        Lajittele <i class="fa fa-arrow-circle-down"></i>
+                    </div>
+                    <div class="dropdown">
+                        <i class="fa fa-solid fa-sort"></i><a id="sort-link" href="?page=1"> Uusin tuote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="visibility:hidden">
+
+    <div class="cart-container-home">
+        <div style="visibility:visible" class="cart-icon"><a href="kassa.html"><i class="fa fa-shopping-cart"></i></a></div>
+        <br />
+        <div style="visibility:visible" class="cart-icon-home"><a href="/"><i class="fa fa-home"></i></a></div>
+    </div>
+
+    <hr style="visibility:hidden">
+
+    <div data---type="view-cart" data--summary-type="dropdown" style="width:99%">Katso ostoskorisi sisältö</div>
+
+    <hr style="visibility:hidden">
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-container" id="menu">
+        <div id="slideit">
+            <!-- Open/close buttons -->
+            <input id="open-item" name="image-gallery" type="radio" />
+            <input id="close-item" name="image-gallery" type="radio" checked="checked" />
+            <!-- Open label -->
+            <label for="open-item" class="open" style="top: 15px; right: 15px; border-radius: 15%; inset-inline-start: auto; "><i class="fa fa-star" style="color:skyblue;"></i></label>
+            <section>
+                <!-- Close label -->
+                <label for="close-item" class="close">&times;</label>
+                <!-- Image navigation inputs -->
+                <input id="image-1" name="images" type="radio" checked="checked" />
+                <input id="image-2" name="images" type="radio" />
+                <input id="image-3" name="images" type="radio" />
+                <input id="image-4" name="images" type="radio" />
+                <input id="image-5" name="images" type="radio" />
+                <!-- Image 1 wrap -->
+                <div class="img-1">
+                    <!-- Image navigation labels -->
+                    <label for="image-5" class="arrow left">&#8249;</label>
+                    <label for="image-2" class="arrow right">&#8250;</label>
+                    <!-- Image source -->
+                    <img src="assets/img/rpi4-aloitussetti.jpg" />
+                    <!-- Image caption -->
+                    <div class="caption">
+                        <span class="title">Näitä tuotteita<br />olemme myyneet<br /><br /></span>
+                        <p>Suosittuja tuotteita ja tuotepaketteja</p>
+                    </div>
+                </div>
+                <!-- Image 2 wrap -->
+                <div class="img-2">
+                    <!-- Image navigation labels -->
+                    <label for="image-1" class="arrow left">&#8249;</label>
+                    <label for="image-3" class="arrow right">&#8250;</label>
+                    <!-- Image source -->
+                    <img src="assets/img/M100.jpg" />
+                    <!-- Image caption -->
+                    <div class="caption">
+                        <span class="title">Näitä tuotteita<br />olemme myyneet<br /><br /></span>
+                        <p>Suosittuja tuotteita ja tuotepaketteja</p>
+                    </div>
+                </div>
+                <!-- Image 3 wrap -->
+                <div class="img-3">
+                    <!-- Image navigation labels -->
+                    <label for="image-2" class="arrow left">&#8249;</label>
+                    <label for="image-4" class="arrow right">&#8250;</label>
+                    <!-- Image source -->
+                    <img src="assets/img/M120.jpg" />
+                    <!-- Image caption -->
+                    <div class="caption">
+                        <span class="title">Näitä tuotteita<br />olemme myyneet<br /><br /></span>
+                        <p>Suosittuja tuotteita ja tuotepaketteja</p>
+                    </div>
+                </div>
+                <!-- Image 4 wrap -->
+                <div class="img-4">
+                    <!-- Image navigation labels -->
+                    <label for="image-3" class="arrow left">&#8249;</label>
+                    <label for="image-5" class="arrow right">&#8250;</label>
+                    <!-- Image source -->
+                    <img src="assets/img/M105.jpg" style="height:320px;" />
+                    <!-- Image caption -->
+                    <div class="caption">
+                        <span class="title">Näitä tuotteita<br />olemme myyneet<br /><br /></span>
+                        <p>Suosittuja tuotteita ja tuotepaketteja</p>
+                    </div>
+                </div>
+                <!-- Image 5 wrap -->
+                <div class="img-5">
+                    <!-- Image navigation labels -->
+                    <label for="image-4" class="arrow left">&#8249;</label>
+                    <label for="image-1" class="arrow right">&#8250;</label>
+                    <!-- Image source -->
+                    <img src="assets/img/M110.jpg" />
+                    <!-- Image caption -->
+                    <div class="caption">
+                        <span class="title">Näitä tuotteita<br />olemme myyneet<br /><br /></span>
+                        <p>Suosittuja tuotteita ja tuotepaketteja</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <ul class="category-list">
+            <li class="X-category" data--type="category-list" data--layout="horizontal-bar" data--category-link="./tuote.html?category={id}"></li>
+        </ul>
+    </div>
+
+    <div id="similar-products" data--type="product-list" data--order="date_desc" data--perpage="8" data--show="" data--layout="cards" data--product-link="./tuotekuvaus.html?product={id}">
+    </div>
+
+    <div class="footer">
+        <div class="container">
+
+            <div class="footer-header">
+                <div class="wavy-line"></div>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h2>Verkkokauppa</h2>
+                    <ul class="footer-menu">
+                        <li class="footer-link">
+                            <div>Tietoa meistä</div>
+                            <div class="description">
+                                Verkkokauppa toimii Helsingin seudulta käsin ja toimittaa elektroniikkatuotteita koko Suomen alueelle.
+                                <br /><br />
+                                <a href="https://www.lnetsys.fi/ehdot.html">Ehdot</a>
+                                <div class="description">Katso <a href="">Ehdot</a>. Tuotteen toimittaminen, tuotetiedot ja hinnat, maksut, kuluttaja-asiakkaan peruutusoikeus etämyynnissä, henkilötietojen käsittely jne..</div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h2>Toimitus</h2>
+                    <ul class="footer-menu">
+                        <li class="footer-link">
+                            <div>Maksutavat, hinnat ja postitus</div>
+                            <div class="description">
+                                Meiltä voit ostaa monilla maksutavoilla.
+                                <br /><br />
+                                <div style="font-family: monospace;">
+                                    ALE
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="table" style="background-color: #ffffff03; font-stretch: ultra-condensed; padding: 2px; ">
+                        <div class="table-cell sar1">
+                            <a href="https://oma.posti.fi" class="btn-pos">Lataa OmaPosti</a>
+                        </div>
+                        <img class="img-posti" alt="posti" src="assets/img/posti.png" style="height: 48px; display: inline-block;">
+
+                        <div class="table-cell cell-feature">Pakettien seuranta</div>
+                        <div class="table-cell">
+                            <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <title>check_blue</title>
+                                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="table-cell cell-feature">Lähiposti tai pakettiautomaatti</div>
+                        <div class="table-cell">
+                            <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <title>check_blue</title>
+                                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="table-cell cell-feature">Arvioitu toimitusaika 1-2 pv</div>
+                        <div class="table-cell">
+                            <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <title>check_blue</title>
+                                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="footer-section">
+                    <h2>Yhteydenotto</h2>
+                    <p>Sähköposti: <a title="Sähköposti" href="mailto:">@</a></p>
+                </div>
+                <div class="footer-section">
+                    <div class="map" style="border: 1px solid #00acd2; transform-style: preserve-3d; ">
+                        <div class="map" id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="whatsapp-icon" id="whatsapp-icon">
+        <div class="close-button" id="close-button">x</div>
+        <img src="assets/img/Digital_Glyph_White.png" alt="Whatsapp logo" width="40" height="40">
+        <div class="w-text" style="font-size: 16px;margin-left: 5px; background:unset;">| Kanavakutsu</div>
+    </div>
+
+    <div id="popupadd" class="popupadd">
+
+        <button id="closeadd" class="closeadd" onclick="closePopupadd()">X</button>
+
+        <input id="arrowadd" class="arrowadd" type="checkbox" onclick="togglePopupadd()"><label class="labeladd" for="arrowadd"></label>
+
+        <div class="contentadd">
+            <p class="saleadd">Aktivoi kuponki<br /><p style="color:white;">Koodilla: ALE</p></p>
+            <p class="validadd">-10,00€ yli 100e tilaukselle, tarjous voimassa --</p>
+        </div>
+    </div>
+
+    <div id="cookie-notice" class="cookie-notice">
+        <p>Tämä verkkosivusto käyttää evästeitä parantaakseen käyttökokemustasi. Jatkamalla sivuston käyttöä hyväksyt evästeiden käytön.</p>
+        <button id="accept-cookies" class="cookie-button">Hyväksy evästeet</button>
+        <button id="reject-cookies" class="cookie-button">Hylkää evästeet</button>
+    </div>
+
+    <script>
+
+        function openWhatsappChannel() {
+
+            var channelUrl = "https://whatsapp.com/channel/";
+
+            window.open(channelUrl, "_blank");
+        }
+
+        function hideWhatsappIcon() {
+
+            var whatsappIcon = document.getElementById("whatsapp-icon");
+
+            whatsappIcon.classList.add("hidden");
+        }
+
+
+        var whatsappIcon = document.getElementById("whatsapp-icon");
+
+        var closeButton = document.getElementById("close-button");
+
+        whatsappIcon.addEventListener("click", openWhatsappChannel);
+
+        closeButton.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+            hideWhatsappIcon();
+        });
+
+    </script>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            if (menu.style.left === "" || menu.style.left === "-350px") {
+                menu.style.left = "0";
+            } else {
+                menu.style.left = "-350px";
+            }
+        }
+    </script>
+
+    <script>
+        var map = L.map('map').setView([60.1924, 24.9532], 5);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([60.1924, 24.9532]).addTo(map)
+            .bindPopup('Helsinki')
+            .openPopup();
+    </script>
+
+    <script>
+        const links = document.querySelectorAll('.footer-link');
+
+        links.forEach((link) => {
+            link.addEventListener('click', () => {
+
+                const description = link.querySelector('.description');
+
+                description.style.display = description.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var cookieBanner = document.getElementById("cookie-notice");
+            var acceptCookies = document.getElementById("accept-cookies");
+            var rejectCookies = document.getElementById("reject-cookies");
+
+            var hasAcceptedCookies = sessionStorage.getItem("cookieAccepted");
+
+            if (!hasAcceptedCookies) {
+                cookieBanner.style.display = "block";
+            } else {
+                cookieBanner.style.display = "none";
+            }
+
+            acceptCookies.addEventListener("click", function () {
+                cookieBanner.style.display = "none";
+                setCookieAccepted();
+            });
+
+            rejectCookies.addEventListener("click", function () {
+
+                var popup = document.createElement("div");
+
+                popup.className = "coo-lay";
+
+                popup.innerHTML = "<p>Evästeet ovat pieniä tekstitiedostoja, jotka tallentuvat selaimeesi, kun vierailet verkkosivuilla. Evästeet voivat sisältää tietoja esimerkiksi siitä, mitä tuotteita olet katsellut, mitä olet lisännyt ostoskoriisi ja mitä asetuksia olet valinnut. </p>";
+
+                var acceptButton = document.createElement("button");
+                acceptButton.className = "button.accept";
+                acceptButton.textContent = "Siirry etusivulle";
+
+                var rejectButton = document.createElement("button");
+                rejectButton.className = "button.reject";
+                rejectButton.textContent = "Edellinen";
+
+                popup.appendChild(acceptButton);
+                popup.appendChild(rejectButton);
+
+                document.body.appendChild(popup);
+
+                popup.addEventListener("click", function () {
+                    document.body.removeChild(popup);
+                });
+
+                acceptButton.addEventListener("click", function () {
+                    window.location.href = "/";
+                });
+
+                rejectButton.addEventListener("click", function () {
+                    window.location.href = "/tuote.html";
+                });
+            });
+
+            function setCookieAccepted() {
+                sessionStorage.setItem("cookieAccepted", "true");
+            }
+        });
+    </script>
+
+    <script>
+        var link = document.getElementById("sort-link");
+        var list = document.getElementById("similar-products");
+
+        link.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            list.setAttribute("data--order", "price_asc");
+
+            var page15 = document.querySelector('[data--page="15"]');
+            var page14 = document.querySelector('[data--page="14"]');
+            var page13 = document.querySelector('[data--page="13"]');
+            var page12 = document.querySelector('[data--page="12"]');
+            var page11 = document.querySelector('[data--page="11"]');
+            var page10 = document.querySelector('[data--page="10"]');
+            var page9 = document.querySelector('[data--page="9"]');
+            var page8 = document.querySelector('[data--page="8"]');
+            var page7 = document.querySelector('[data--page="7"]');
+            var page6 = document.querySelector('[data--page="6"]');
+            var page5 = document.querySelector('[data--page="5"]');
+            var page4 = document.querySelector('[data--page="4"]');
+            var page3 = document.querySelector('[data--page="3"]');
+            var page2 = document.querySelector('[data--page="2"]');
+            var page1 = document.querySelector('[data--page="1"]');
+
+            function switchPages() {
+
+                var pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10, page11, page12, page13, page14, page15];
+
+                for (var i = 0; i < pages.length; i++) {
+
+                    if (pages[i].classList.contains('active')) {
+
+                        pages[i].classList.remove('active');
+
+                        page1.classList.add('active');
+
+                        page1.querySelector('.page-link').click();
+
+                        break;
+                    }
+                }
+            }
+
+            setTimeout(switchPages, 1000);
+
+            var lis = document.querySelectorAll("li.page-item");
+
+            function showPage(pageNumber) {
+
+                try {
+                    lis[pageNumber - 1].classList.add("active");
+                } catch (error) {
+                    console.error(error);
+                    window.location.href = "/tuote.html";
+                }
+            }
+            showPage(1);
+        });
+    </script>
+
+    <script>
+        var link = document.getElementById("sort-link");
+
+        link.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            if (link.textContent === " Uusin tuote") {
+
+                link.textContent = " Edullisin tuote";
+
+            } else {
+
+                window.location.href = "/tuote.html";
+            }
+        });
+    </script>
+
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has("category")) {
+
+            var dropdowns = document.getElementsByClassName("navigation-out");
+
+            for (var i = 0; i < dropdowns.length; i++) {
+                dropdowns[i].style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        function closePopupadd() {
+            var popupadd = document.getElementById("popupadd");
+            popupadd.style.display = "none";
+
+
+            sessionStorage.setItem("popupaddClosed", "true");
+
+            setTimeout(function () {
+                sessionStorage.setItem("popupaddClosed", "false");
+            }, 5 * 60 * 1000);
+        }
+
+        function togglePopupadd() {
+            var popupadd = document.getElementById("popupadd");
+            var arrowadd = document.getElementById("arrowadd");
+
+            var popupaddWidth = Math.round(popupadd.offsetWidth);
+            if (arrowadd.checked) {
+                popupadd.style.right = "-" + (popupaddWidth - 10) + "px";
+                arrowadd.nextElementSibling.innerHTML = ">";
+            } else {
+                popupadd.style.right = "0px";
+                arrowadd.nextElementSibling.innerHTML = "<";
+            }
+        }
+
+        var popupaddClosed = sessionStorage.getItem("popupaddClosed");
+        if (popupaddClosed == "true") {
+
+            var popupadd = document.getElementById("popupadd");
+            popupadd.style.display = "none";
+
+            setTimeout(function () {
+                sessionStorage.setItem("popupaddClosed", "false");
+            }, 5 * 60 * 1000);
+        }
+    </script>
+</body>
+
+</html>
+
+

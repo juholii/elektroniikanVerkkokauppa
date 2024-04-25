@@ -1,0 +1,142 @@
+﻿@page "/naytot"
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<!-- Näytöt -->
+
+<div id="naytot" class="container">
+
+    <div class="Hover_area" id="hover_style">
+
+
+        <div id="open" style="text-align:center">
+
+        </div>
+    <div class="customization-process">
+    <section>
+    <div class="row people">
+    <div class="col-md-12 col-lg-12">
+    <div class="table-responsive text-center">
+ 
+        <div class="secondary-title">
+            <h4>Näytöt</h4>
+        </div>
+
+        <div id="id01" class="table t1">                
+        
+            <div class="intro">
+                <div style="background-color:#330808" >         
+                </div>
+            </div>  
+            <div style="border-bottom-color:#fff0;"> 
+            
+                <BlazorModalAll TitleAll="Näytöt" IsOpened="isOpened" Items="henkilot" TItemAll="Henkilo">
+                    <ModalBodyAll>
+                        <table class="backgcolor">
+                            <div class="intro">
+                               Id-numero : @context.NayteId
+                            </div>
+                            <tbody id="tBodyElement" @onclick="ToggleHeight" style="@(Selected ? "height:auto;" : "height:none;")">
+                                <tr class="customization style1">
+                                    <td>
+                                        <div class="box" style="cursor: none;"><img class="img10" src="@context.KuvaUrl"></div>
+                                        @if (!string.IsNullOrEmpty(context.Email))
+                                        {
+	                                        <a href="@context.Email" onclick="@context.AikaJaljella"><i aria-hidden="true">Lisätietoa</i></a>
+                                        }
+                                        else
+                                        {
+	                                        <a href="#" class="hidden-link">Lisätietoa</a>
+                                        }
+                                    </td>
+                                    <td>
+                                        <!--Profiili-->
+                                        <div>
+                                            <div class="item row">
+                                                <div class="front">
+                                                    <div class="box"><div class="text-center"><br><span class="clamp">@context.Kuvaus</span></div><br /></div>
+                                                    <div class="box"><div class="text-center"><br><span class="clamp"></span>@context.Teknologiat</div><br /></div>
+                                                    <div><hr style="color:black; height:10px"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Profiili-->
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            @if (!string.IsNullOrEmpty(context.VideoUrl))
+                            {
+                                <div id="vid00">
+                                    <video id="vid01" class="vidText" src="@context.VideoUrl" controls="" muted="" loop="" type="video/mp4"></video>
+                                </div>
+                            }
+                            else
+                            {
+                                //
+                            }
+
+                            <hr style="background-color: red;padding: 10px;min-width: 200px;">
+                        </table>
+                    </ModalBodyAll>
+                    <ModalFooterAll>
+
+                    </ModalFooterAll>
+                </BlazorModalAll>         
+            </div>  
+        </div>   
+    </div>
+    </div>
+    </div>
+    </section>
+    </div>
+</div>
+</div>
+
+@code {
+    public bool Selected { get; set; } = false;
+
+    public void ToggleHeight()
+    {
+        Selected = !Selected;
+    }
+
+    private void NavigateToNewPage()
+    {
+        NavigationManager.NavigateTo("naytot", true);
+    }
+
+     bool isOpened = true;
+
+     private List<Henkilo> henkilot = new()
+    {
+        new Henkilo { NayteId = "#1588066006", Email= "https://www.elecrow.com/rc050s-hdmi-5-inch-800x480-capacitive-touch-monitor-built-in-speaker-with-backlight-control.html", Tila = "", Paikka = "naytot", Saatavilla = "Tuotteen saatavuus näkyy kategoriassa näytöt tai hakuikkunan alapuolelta", KoodiUrl = "https://www.elecrow.com/download/product/DIS00005R/Elecrow_RC050S_5_Inch_HDMI_Touchscreen_Monitor_User_Manual.pdf", KuvaUrl = "assets/img/20221213_104230.jpg", Kuvaus = "Kosketusnäyttö. Sis. sovitepalat RPi 3B ja RPi Pi 4 varten", Teknologiat = "Elecrow RC050S; Kokoluokka 5 tuumaa; Resoluutio 800x400", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/RC050S.mp4" },
+        new Henkilo { NayteId = "#1409178683", Email="https://www.elecrow.com/rc070p-7-inch-1024x600-raspberry-pi-monitor-touchscreen-capacitive-ips-display-with-built-in-speaker-stand.html", Tila = "", Paikka = "naytot", Saatavilla = "Tuotteen saatavuus näkyy kategoriassa näytöt tai hakuikkunan alapuolelta", KoodiUrl = "https://www.elecrow.com/download/product/DPM50080D/RC070P_User_Manual.pdf", KuvaUrl = "assets/img/20221216_150236.jpg", Kuvaus = "Kosketusnäyttö. Tukee monia eri käyttöjärjestelmiä", Teknologiat = "Elecrow RC070P; Kokoluokka 7 tuumaa; Resoluutio 1024x600", Maksutapahtuma = "", AikaJaljella = "timerE5On()", AjanTarkkuus = "timerE5", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/Elecrow7_2.mp4" },
+        new Henkilo { NayteId = "#1423516552", Email="https://www.okdo.com/us/p/official-raspberry-pi-7-touch-screen-lcd/", Tila = "", Paikka = "naytot", Saatavilla = "Tuotteen saatavuus näkyy kategoriassa näytöt tai hakuikkunan alapuolelta", KoodiUrl = "https://www.okdo.com/us/wp-content/uploads/sites/8/2019/03/Pi_touch_screen-Data-Sheet.pdf", KuvaUrl = "assets/img/a-00003-t.jpg", Kuvaus = "Kosketusnäyttö Raspberry Pi 3:lle, premium-kotelo", Teknologiat = "Okdo 8997466; Kokoluokka 7 tuumaa; Resoluutio 800x480", Maksutapahtuma = "", AikaJaljella = "timerE6On()", AjanTarkkuus = "timerE6", VideoUrl ="" },
+        new Henkilo { NayteId = "#471912211", Email="http://lcdwiki.com/5inch_HDMI_Display", Tila = "", Paikka = "naytot", Saatavilla = "Tuotteen saatavuus näkyy kategoriassa näytöt tai hakuikkunan alapuolelta", KoodiUrl = "http://lcdwiki.com/5inch_HDMI_Display", KuvaUrl = "assets/img/20230127_114512.jpg", Kuvaus = "RPi kosketusnäyttö kosketuskynällä ja koottavalla suojalla", Teknologiat = "5 Inch TFT LCD-näyttö, Resoluutio 800x480. Suunniteltu RPi 3. 2. 1.", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="https://datalnetsys.z6.web.core.windows.net/video/MPI5008-5inch.mp4" }
+        //new Henkilo { NayteId = "a-00005-t", Email="", Tila = "", Paikka = "naytot", Saatavilla = "Tuotteen saatavuus näkyy kategoriassa näytöt tai hakuikkunan alapuolelta", KoodiUrl = "", KuvaUrl = "assets/img/animation/Style 2.gif", Kuvaus = "", Teknologiat = "", Maksutapahtuma = "", AikaJaljella = "", AjanTarkkuus = "", VideoUrl ="" }
+
+    };
+
+    private class Henkilo
+    {
+        public int HenkiloId { get; set; }
+        public string? NayteId { get; set; }  
+        public string? Nimi { get; set; } 
+        public string? Paikka { get; set; }   
+        public string? Tila { get; set; }   
+        public string? Saatavilla { get; set; } 
+        public string? KoodiUrl { get; set; } 
+        public string? KuvaUrl { get; set; } 
+        public string? Kuvaus { get; set; } 
+        public string? Teknologiat { get; set; } 
+        public string? Maksutapahtuma { get; set; } 
+        public string? AikaJaljella { get; set; } 
+        public string? AjanTarkkuus { get; set; } 
+        public string? Email { get; set; } 
+        public string? VideoUrl { get; set; }
+
+    }
+
+}
+

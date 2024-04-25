@@ -1,0 +1,255 @@
+﻿<div class="projektit-Kort active">
+    <div id="nakyma1" class="projektit-nakyma">
+        
+        <ul class="projektit-ruudukko">
+            @foreach (var Product in _products)
+            {
+                <li id="kohde-1" class="projekti projekti-kortti" onclick="document.querySelector('.projektit-Kort-Lisa').classList.toggle('active');window.location.href='#@Product.Ala-osaaja-@Product.Id'">
+
+                    <a style="padding-bottom:40px;">
+                        <span class="toggle" style="position:absolute;margin-top:10px;margin-left:10px;padding-bottom:10px;">Lisätiedot</span>
+                    </a>
+
+                    <div class="projekti-kortti-kuva">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="projekti-kortti-tiedot">
+                        <h3>@Product.Name</h3>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+  
+    <strong style="margin-top:10px;border-bottom:groove;">Ajankohtaista, tekijät ja digitaalinen työympäristö</strong>
+
+    <section class="contact-info">
+        <br /><br /><br />
+        <br />
+        <button class="button-viesti" style="width:50px;height:auto;border-style: ridge;margin-top: 10px;">
+            <a href="mailto:" style="color:#0071c1;">mail</a>
+            <svg viewBox="0 0 8 6" xmlns="http://www.w3.org/2000/svg">
+                <path d="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z" />
+            </svg>
+        </button>
+
+        <br><br>
+    </section>
+
+    <section class="specialists">
+        <strong>Tekijät :<br /></strong>
+        <ul>
+            <li>LinkedIn-profiili: <a href="https://fi.linkedin.com/in/">Profiili</a></li>
+        </ul>
+    </section>
+
+    <div id="nakyma2" class="projektit-Kort-Lisa" style="padding-left: 0rem!important;border-radius: 15px;border: none;">
+
+        <ul>
+
+            @foreach (var Product in _products)
+            {
+                         
+                <li id="@Product.Ala-osaaja-@Product.Id" class="projekti">
+                    
+                    <div id="kohde-lisatiedot" class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <br>
+                            
+                            <section class="technologies">
+                                <div class="tyokalut" style="padding-top: 10px;">
+                                    <p style="border-style: outset;max-width: 350px;padding: 5px;background-color: #181a1fb3;color: white;">#<span class="kuvaus">@Product.Kuvaus</span></p>
+                                    <div>
+                                        <div>
+                                            @{
+                                                string firstPart = string.Empty;
+                                                var teknologiaList = new List<string> { Product.Teknologia1, Product.Teknologia2, Product.Teknologia3, Product.Teknologia4, Product.Teknologia5, Product.Teknologia6, Product.Teknologia7, Product.Teknologia8, Product.Teknologia9, Product.Teknologia10, Product.Teknologia11, Product.Teknologia12 };
+
+                                                var nonEmptyTeknologiaList = teknologiaList.Where(k => !string.IsNullOrEmpty(k)).ToList();
+
+                                                @if (nonEmptyTeknologiaList.Count > 0)
+                                                {
+                                                    <ul>
+                                                        @foreach (var teknologia in nonEmptyTeknologiaList)
+                                                        {
+                                                            <li>@teknologia</li>
+
+                                                        }
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                    <p>Ei yhtään teknologiaa</p>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </section>
+
+                            <div class="projekti-body">
+
+                                <section class="company-description">
+
+                                    <p>
+                                        <strong>Yhteistyö :</strong>
+                                        <span class="ala">
+                                            <ul>
+                                                <li>@Product.Ala</li>
+                                            </ul>
+                                        </span>
+                                    </p>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>                             
+            }
+        </ul>
+    </div>
+
+</div>
+
+<div class="col-xs-12 col-md-6">
+
+    <section class="company-images">
+        <h2 hidden>Kuvat</h2>
+        <div id="company-images-carousel" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+                <hr />
+                <div class="carousel-item active flex-item-left">
+                    <h2 style="color: white; font-size: 24px; padding-bottom: 20px;">Komponentit</h2>
+                    <img src="assets/img/soitin1.png" alt="Kuva 1" style="display: block;max-width: 145px;height: 200px;margin-inline: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="display:none;" class="additional-websites">
+        <strong>Tuotteet, vinkit, lähdekoodit -projektiin :</strong>
+        <ul>
+            <li><a href="/" class="verkkosivusto"> Katso lisää</a></li>
+        </ul>
+    </section>
+</div>
+
+@code {
+    private bool nakyma2 = true;
+
+    private void NaytaLisatiedot()
+    {
+        nakyma2 = true;
+    }
+
+    private void PiilotaLisatiedot()
+    {
+        nakyma2 = false;
+    }
+
+    public class Product
+    {
+        public int? Id { get; set; }
+        public string? Name { get; set; }
+        public string? Sijainti { get; set; }
+        public string? Kuvaus { get; set; }
+        public string? Ala { get; set; }
+        public string? Julkaistu { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? KayttajanUrl { get; set; }
+        public string? Teknologia1 { get; set; }
+        public string? Teknologia2 { get; set; }
+        public string? Teknologia3 { get; set; }
+        public string? Teknologia4 { get; set; }
+        public string? Teknologia5 { get; set; }
+        public string? Teknologia6 { get; set; }
+        public string? Teknologia7 { get; set; }
+        public string? Teknologia8 { get; set; }
+        public string? Teknologia9 { get; set; }
+        public string? Teknologia10 { get; set; }
+        public string? Teknologia11 { get; set; }
+        public string? Teknologia12 { get; set; }
+        public bool? IsAvailable { get; set; }
+        public bool IsProductSelected { get; set; } = false;
+        public int? Stock { get; set; }
+        public int Price { get; set; }
+
+    }
+
+    private List<Product> _products = new List<Product> {
+        new Product {
+            Id = 1,
+            Name = "Työkalut",
+            Sijainti = "",
+            Kuvaus = "Työkalut",
+            Ala = "Joustavuutta ja kustannustehokkuutta asiakkaillemme, hyödynnä projekteissasi työkalu- ja ohjelmisto-osaamistamme.",
+            Julkaistu = "",
+            ImageUrl = "/assets/img/code.ico",
+            KayttajanUrl = "",
+            Teknologia1 = "Microsoft",
+            Teknologia2 = "Visual Studio",
+            Teknologia3 = "Azure",
+            Teknologia4 = "PWA",
+            Teknologia5 = "Blazor Wasm",
+            Teknologia6 = "Git",
+            Teknologia7 = "Github",
+            Teknologia8 = "Trello",
+            Teknologia9 = "Raspberry Pi",
+            Teknologia10 = "Blender3D",
+            Teknologia11 = "Bootstrap",
+            Teknologia12 = "CMS",
+            IsAvailable = true,
+            Stock = 1
+
+        },
+        new Product {
+            Id = 2,
+            Name = "Teknologiat",
+            Sijainti = "",
+            Kuvaus = "Teknologiat",
+            Ala = "Lähdekoodit ja komponentit asiakkaillemme, hyödynnä projekteissasi teknologiaosaamistamme.",
+            Julkaistu = "",
+            ImageUrl = "/assets/img/code.ico",
+            KayttajanUrl = "",
+            Teknologia1 = "Full-Stack",
+            Teknologia2 = ".NET",
+            Teknologia3 = "Html",
+            Teknologia4 = "Css",
+            Teknologia5 = "C#",
+            Teknologia6 = "Razor",
+            Teknologia7 = "API",
+            Teknologia8 = "Json",
+            Teknologia9 = "AR",
+            Teknologia10 = "VR",
+            Teknologia11 = "NFC",
+            Teknologia12 = "QR-Code",
+            IsAvailable = true,
+            Stock = 2
+        },
+        new Product {
+            Id = 3,
+            Name = "Projektit",
+            Sijainti = "",
+            Kuvaus = "Projektit",
+            Ala = "Me voimme luoda sinulle komponentteja, jotka vastaavat tarpeitasi ja näyttävät hyvältä. Kerro meille vain, millaisia tietoja, kuvia ja ominaisuuksia haluat komponenteissasi olevan. Voit seurata projektin etenemistä ja antaa palautetta milloin tahansa. Ota yhteyttä ja kerro, mitä voimme tehdä sinulle.",
+            Julkaistu = "",
+            ImageUrl = "/assets/img/code.ico",
+            KayttajanUrl = "",
+            Teknologia1 = "Luomme komponentteja, osia ohjelmistoista jotka suorittavat tiettyjä toimintoja ja luomme niitä erilaisilla teknologioilla. Valitse komponentit jos haluat aloittaa tai laajentaa sivustoa tai sovellusta helposti ja joustavasti. Voit ulkoistaa komponenttien suunnittelun, toteutuksen ja ylläpidon meille, niin säästät aikaa ja vaivaa. Komponentteja kuten:",
+            Teknologia2 ="Galleria-komponentti",
+            Teknologia3 ="Video-komponentti",
+            Teknologia4 ="Animaatio-komponentti",
+            Teknologia5 ="Skrollaus-komponentti",
+            Teknologia6 ="Tuotekortti-komponentti",
+            Teknologia7 ="Ponnahdusikkuna-komponentti",
+            Teknologia8 ="Soitin-komponentti - katso alapuolella oleva esimerkki soitin-komponentista",
+            Teknologia9 ="Lomake-komponentti",
+            Teknologia10 ="Taulukko-komponentti",
+            Teknologia11 ="3d-komponentti",
+            Teknologia12 ="Desing-komponentti",
+            IsAvailable = true,
+            Stock = 3
+        },
+    };
+}
